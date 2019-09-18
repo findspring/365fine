@@ -2,11 +2,69 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="referrer" content="no-referrer" /> 
     <title>365fine</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1419490_800l1eq9xy9.css">
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+    	(function (doc, win) {   
+            var docEl = doc.documentElement,   
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',   
+            recalc = function () {   
+            var clientWidth = docEl.clientWidth;   
+            if (!clientWidth) return;   
+            docEl.style.fontSize = 50 * (clientWidth / 375) + 'px';   
+        };   
+        if (!doc.addEventListener) return;   
+        win.addEventListener(resizeEvt, recalc, false);   
+        doc.addEventListener('DOMContentLoaded', recalc, false);   
+        })(document, window); 
+    </script>
+    <script>
+      //获取url参数值
+      String.prototype.getQueryString = function () {
+        var url = this;
+        if (url && url.length > 0) {
+          url = url.split("?")[1];
+          var tmp_para = {};
+          if (url) {
+            var queryarr = url.split("&");
+            for (var i = 0; i < queryarr.length; i++) {
+              var keyval = queryarr[i];
+              if (keyval) {
+                var keyvalarr = keyval.split("=");
+                if (keyvalarr.length > 0) {
+                  tmp_para[keyvalarr[0]] = keyvalarr[1];
+                }
+              }
+            }
+          }
+        }
+        return tmp_para;
+      };
+      // 角色
+      var currurl = window.location.href.toString();
+      var data = currurl.getQueryString();      
+      var role = localStorage.getItem("role") || "owner";
+      if(data && data["role"]){
+        localStorage.setItem("role", data["role"]);
+      }
+      // authToken
+      var authToken = localStorage.getItem("authToken") || "";
+      {/*if (!authToken){
+        // currurl = window.location.href.toString();
+        // data = currurl.getQueryString();
+        if (data["authToken"]) {
+          localStorage.setItem("authToken", data["authToken"]);
+        }
+      }
+      if(location.href.indexOf('/login') < 0 && !authToken){
+        location.href = "https://www.alfyun.cn/login";
+      }*/}
+    </script>
   </body>
 </html>

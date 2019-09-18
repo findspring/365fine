@@ -1,0 +1,117 @@
+@charset "utf-8";
+/*reset*/
+body,ol,ul,li,dl,dd,p,h1,h2,h3,h4,h5,form,input,button,textarea,tr,th,td,div{margin:0;padding:0;box-sizing:border-box;}
+body{font-size:.28rem;color:#333;height:100%;}
+button,input{*overflow:visible;line-height:normal;}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0;}
+
+html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+img{border:0;-ms-interpolation-mode:bicubic;vertical-align:middle;}
+ol,ul,li{list-style:none outside none}
+button,input,select,textarea{margin:0;font-size:100%;vertical-align:middle;}
+button,input{*overflow:visible;line-height:normal;}
+input{outline:none; border:none;-webkit-user-select:auto;-webkit-appearance: none;}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0;}
+button, html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}
+label, select,button,input[type="button"],input[type="reset"],input[type="submit"],input[type="radio"],input[type="checkbox"]{cursor:pointer;}
+input[type="search"]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield;}
+input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;}
+textarea{overflow:auto;vertical-align:top;outline:none;}
+em,i{font-style:normal}
+table{border-collapse:collapse;border-spacing:0;}
+body{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background-color:#fff;
+}
+/*::-webkit-input-placeholder{color:#A6A0A0}
+::-moz-placeholder{color:#A6A0A0}
+:-moz-placeholder{color:#A6A0A0}*/
+.clearfix{zoom:1;}
+.clearfix:after{
+  content:"";
+  display:block;
+  height:0;
+  line-height:0;
+  clear:both;
+  visibility:hidden;
+}
+/*超出部分省略号*/
+.line-ellipsis01{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.line-ellipsis02{ display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.text-align{
+  text-align: center;
+}
+.fr{
+  float:right;
+}
+.fl{
+  float:left;
+}
+.cursor{
+  cursor:pointer;
+}
+.inline-block{
+  display: inline-block;
+}
+.flex{
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.audit-btn{
+  width: 1.65rem;
+  height: .66rem;
+  line-height: .66rem;
+  text-align: center;
+  border-radius: .33rem;
+  font-size: .3rem;
+}
+  
+.common-btn{
+  width:2.4rem;
+  height:.94rem;
+  background:rgba(206,61,58,1);
+  border-radius:.47rem;
+  line-height: .94rem;
+  text-align:center;
+  color: #fff;
+  font-size: .3rem
+}
+.fade-transition {
+  transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+.vux-loading{
+  position:fixed!important;
+  z-index: 1000!important;
+}
+.common-icon{
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.index-tab.vux-tab-wrap{
+  width:90%;
+}
