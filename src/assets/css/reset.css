@@ -25,7 +25,7 @@ body{
   right:0;
   top:0;
   bottom:0;
-  background-color:#fff;
+  background-color:#f5f5f5;
 }
 /*::-webkit-input-placeholder{color:#A6A0A0}
 ::-moz-placeholder{color:#A6A0A0}
@@ -114,4 +114,7 @@ body{
 
 .index-tab.vux-tab-wrap{
   width:90%;
+}
+.index-tab .vux-tab{
+  background: #f5f5f5;  
 }
