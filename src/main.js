@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import install from 'utils/install'
 import obj from 'utils/index'
+import Vant from 'vant';
 import {
 	ToastPlugin,
 	LoadingPlugin,
@@ -22,6 +23,9 @@ Vue.use(install)
 
 import './assets/css/reset.css';
 import './assets/stylus/index.styl';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+
 let httpHead = {
 	// "channel": isWeixin?'1':(isios?'2':(isandroid?'3':'5')),//微信(公众号)传1，ios传2，安卓传3，其他传5
 	"clientTime": new Date().getTime(),

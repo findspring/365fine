@@ -25,12 +25,12 @@ export default {
     		},
     		{
     			title: "发现",
-    		 	url: "/members",
+    		 	url: "/find",
     		 	iconClass: "icon-faxian"
     		},
     		{
     			title: "订单",
-    		 	url: "/visitors",
+    		 	url: "/order",
     		 	iconClass: "icon-dingdan"
     		},
     		{

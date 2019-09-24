@@ -1,13 +1,16 @@
 <template>
-	<div id="search" class="pd24">
-		
+	<div class="pd24">
+		<div class="cash-top">
+			<img src="../assets/images/cash.png"  width="100%" alt="">
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
 
-  name: 'search',
+  name: 'cash',
+
   data() {
     return {
 
@@ -17,5 +20,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
 </style>

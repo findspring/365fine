@@ -1,5 +1,5 @@
 <template>
-	<div id="search" class="pd24">
+	<div class="pd24">
 		
 	</div>
 </template>
@@ -7,7 +7,8 @@
 <script>
 export default {
 
-  name: 'search',
+  name: 'friend',
+
   data() {
     return {
 
@@ -17,5 +18,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
 </style>

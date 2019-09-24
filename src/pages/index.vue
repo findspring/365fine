@@ -224,14 +224,12 @@
 import { Tab, TabItem, Swiper, SwiperItem,Marquee, MarqueeItem } from 'vux';
 import navBar from "components/navBar";
 const list = () => ['精选', '美食', '电影', '酒店', '外卖'];
-const test = () => ['11', '22', '33', '44', '55'];
 
 export default {
 
   name: 'index',
   data() {
     return {
-      list1: test(),
       list2: list(),
       demo2: '精选',
       selected_index: 0,

@@ -39,6 +39,9 @@ body{
   clear:both;
   visibility:hidden;
 }
+.pd24{
+  padding: .24rem;
+}
 /*超出部分省略号*/
 .line-ellipsis01{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .line-ellipsis02{ display: -webkit-box;
