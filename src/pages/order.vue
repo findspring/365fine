@@ -17,15 +17,18 @@
       </sticky>
     </div>
     <p v-for="i in 100">{{i}}<br></p>
+    <!-- navbar -->
+		<nav-bar :page="2"></nav-bar>
   </div>
 </template>
 
 <script>
 import { Tab, TabItem, Sticky } from 'vux'
-
+import navBar from "components/navBar";
 export default {
 	name: 'order',
   components: {
+  	navBar,
     Tab,
     TabItem,
     Sticky

@@ -44,33 +44,28 @@
 			<div class="hot-item flex">
 				<h4>头条</h4>
 			</div>
-			<sticky>
-	      <tab :line-width=1  v-model="selected_index">
-	        <tab-item  v-for="(item, index) in listArr"  :key="index">{{item}}</tab-item>
-	      </tab>
-	    </sticky>
-	    <div class="find-news-info clearfix">
-	    	<div v-if="selected_index == 0" class="find-news-all">
-		    	<div class="find-news-item">
-		    		<img src="../assets/images/news01.png" alt="">
-		    		<div class="find-news-right">
-		    			<h5 class="line-ellipsis02">xxxxxtitle你知道吗？</h5>
-		    			<div class="flex find-news-bottom">
-		    				<p class="p1">推广引流</p>
-		    				<span>09-20</span>
-		    				<p class="p2"><i class="iconfont icon-eyes"></i>5355</p>
-		    			</div>
-		    		</div>
-		    	</div>
-		    </div>
-		    <div v-else-if="selected_index == 1">
-		    	22223
-		    </div>
-		    <div v-else-if="selected_index == 2">
-		    	333332
-		    </div>
-	    </div>
-		    
+			<van-tabs v-model="activeName" sticky color="#1a91eb">
+				<van-tab title="全部" name="a" class="find-news-info">
+					<div class="find-news-all">
+						<div class="find-news-item">
+			    		<img src="../assets/images/news01.png" alt="">
+			    		<div class="find-news-right">
+			    			<h5 class="line-ellipsis02">xxxxxtitle你知道吗？</h5>
+			    			<div class="flex find-news-bottom">
+			    				<p class="p1">推广引流</p>
+			    				<span>09-20</span>
+			    				<p class="p2"><i class="iconfont icon-eyes"></i>5355</p>
+			    			</div>
+			    		</div>
+			    	</div>
+					</div>
+				</van-tab>
+			  <van-tab title="贷款" name="b" class="find-news-info">
+			  	<div class="salary-tab">
+						22222
+					</div>
+			  </van-tab>
+			</van-tabs>  
 		</div>
 		<!-- navbar -->
 		<nav-bar :page="1"></nav-bar>
@@ -86,6 +81,7 @@ export default {
 
   data() {
     return {
+    	activeName:'a',
     	activeImg:require('../assets/images/active.png'),
 			img_list:[{
 				url: 'javascript:',

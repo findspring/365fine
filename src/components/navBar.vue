@@ -93,6 +93,6 @@ export default {
 						font-size .2rem
 						margin-top .08rem									
 				.active
-					color #4978c4
+					color #1a91eb
   				
 </style>

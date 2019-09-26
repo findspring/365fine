@@ -277,7 +277,7 @@ export default {
 	.loan-page i{
 		font-size: .4rem;
 		/*color:#48cfad;*/
-		color: #4978c4;
+		color: #1a91eb;
 	}
 	.loan-notice{
 		padding: .2rem 0;
