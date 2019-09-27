@@ -17,97 +17,26 @@
 			<div class="search-credit">
 				<h3>信用卡产品</h3>
 				<div class="loan-item clearfix">
+					<div class="loan-item-hot">HOT</div>
 	    		<div class="loan-item-top">
 	    			<img src="../assets/images/cp01.png">
-	    			<h4>xxx卡</h4>
-	    			<p class="loan-date">每周五结</p>
-	    			<p class="loan-rate">月息0.03%</p>
+	    			<h4>民生信用卡</h4>
+	    			<p class="loan-date">查询结算</p>
+	    			<!-- <p class="loan-rate">月息0.03%</p> -->
 	    		</div>
 	    		<div class="loan-item-mid">
-	    			<div class="loan-item-limit">
-	    				<b>3000-8000</b><span>额度（元）</span>
+	    			<div class="card-item-tips">
+	    				<span>通过率高</span>
+	    				<span>易下卡</span>
+	    				<span>额度大</span>
 	    			</div>
 	    			<div class="loan-item-vip flex">
-	    				<i class="iconfont icon-vip"></i><span>返<b>2.3%</b></span>
+	    				<i class="iconfont icon-vip"></i><span>￥<b>80</b></span>
 	    			</div>
 	    		</div>
-	    		<div class="loan-item-bottom">
-	    			<p>普通用户&nbsp;返<span>1.84%</span></p>
-	    		</div>
-	    	</div>
-	    	<div class="loan-item clearfix">
-	    		<div class="loan-item-top">
-	    			<img src="../assets/images/cp01.png">
-	    			<h4>xxx卡</h4>
-	    			<p class="loan-date">每周五结</p>
-	    			<p class="loan-rate">月息0.03%</p>
-	    		</div>
-	    		<div class="loan-item-mid">
-	    			<div class="loan-item-limit">
-	    				<b>3000-8000</b><span>额度（元）</span>
-	    			</div>
-	    			<div class="loan-item-vip flex">
-	    				<i class="iconfont icon-vip"></i><span>返<b>2.3%</b></span>
-	    			</div>
-	    		</div>
-	    		<div class="loan-item-bottom">
-	    			<p>普通用户&nbsp;返<span>1.84%</span></p>
-	    		</div>
-	    	</div>
-	    	<div class="loan-item clearfix">
-	    		<div class="loan-item-top">
-	    			<img src="../assets/images/cp01.png">
-	    			<h4>xxx卡</h4>
-	    			<p class="loan-date">每周五结</p>
-	    			<p class="loan-rate">月息0.03%</p>
-	    		</div>
-	    		<div class="loan-item-mid">
-	    			<div class="loan-item-limit">
-	    				<b>3000-8000</b><span>额度（元）</span>
-	    			</div>
-	    			<div class="loan-item-vip flex">
-	    				<i class="iconfont icon-vip"></i><span>返<b>2.3%</b></span>
-	    			</div>
-	    		</div>
-	    		<div class="loan-item-bottom">
-	    			<p>普通用户&nbsp;返<span>1.84%</span></p>
-	    		</div>
-	    	</div><div class="loan-item clearfix">
-	    		<div class="loan-item-top">
-	    			<img src="../assets/images/cp01.png">
-	    			<h4>xxx卡</h4>
-	    			<p class="loan-date">每周五结</p>
-	    			<p class="loan-rate">月息0.03%</p>
-	    		</div>
-	    		<div class="loan-item-mid">
-	    			<div class="loan-item-limit">
-	    				<b>3000-8000</b><span>额度（元）</span>
-	    			</div>
-	    			<div class="loan-item-vip flex">
-	    				<i class="iconfont icon-vip"></i><span>返<b>2.3%</b></span>
-	    			</div>
-	    		</div>
-	    		<div class="loan-item-bottom">
-	    			<p>普通用户&nbsp;返<span>1.84%</span></p>
-	    		</div>
-	    	</div>
-	    	<div class="loan-item clearfix">
-	    		<div class="loan-item-top">
-	    			<img src="../assets/images/cp01.png">
-	    			<h4>xxx卡</h4>
-	    			<p class="loan-date">每周五结</p>
-	    			<p class="loan-rate">月息0.03%</p>
-	    		</div>
-	    		<div class="loan-item-mid">
-	    			<div class="loan-item-limit">
-	    				<b>3000-8000</b><span>额度（元）</span>
-	    			</div>
-	    			<div class="loan-item-vip flex">
-	    				<i class="iconfont icon-vip"></i><span>返<b>2.3%</b></span>
-	    			</div>
-	    		</div>
-	    		<div class="loan-item-bottom">
-	    			<p>普通用户&nbsp;返<span>1.84%</span></p>
+	    		<div class="card-item-bottom">
+	    			<p>天天民生日，周周享优惠</p>
+	    			<p>普通用户&nbsp;￥<span>64</span></p>
 	    		</div>
 	    	</div>
 			</div>
@@ -167,6 +96,16 @@ export default {
 		overflow: hidden;
 		padding: .3rem .2rem .2rem .2rem;
 		margin-bottom: .2rem;
+		position: relative;
+	}
+	.loan-item-hot{
+		position:absolute;
+		right: .24rem;
+		top:0;
+		padding: .06rem .16rem;
+		border-radius:  0 0 .08rem .08rem;
+		background: #f45c5c;
+		color:#fff;
 	}
 	.loan-item-top{
 		display:flex;
@@ -222,7 +161,26 @@ export default {
 		font-size: .4rem;
 		margin-left: .04rem;
 	}
-	.loan-item-bottom{}
+	.card-item-tips span{
+		display: inline-block;
+		padding: .08rem .1rem;
+		border:1px solid #f45c5c;
+		color:#f45c5c;
+		font-size: .24rem;
+		border-radius: .08rem;
+		margin-right: .06rem;
+	}
+	.card-item-bottom{
+		display: flex;
+		justify-content: space-between;
+	}
+	.card-item-bottom p{
+		color: #999;
+		font-size: .3rem;
+	}
+	.card-item-bottom p span{
+		color: #333;
+	}
 	.loan-item-bottom p{
 		float: right;
 		color: #999;
