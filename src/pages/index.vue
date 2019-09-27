@@ -4,7 +4,7 @@
 		<div>
 			<div class="index-wrapper">
 				<div class="index-right flex">
-					<i class="iconfont icon-sousuo"></i>
+					<i class="iconfont icon-sousuo" @click="goPath('search')"></i>
         	<!-- <i class="iconfont icon-xiaoxi"></i> -->
 				</div>
 	      <tab  class="index-tab" :line-width=2 active-color='#fc378c' v-model="selected_index">
@@ -238,8 +238,10 @@ export default {
   mounted(){
 
   },
-  motheds:{
-
+  methods:{
+		goPath(val){
+			this.$router.push({name:val})
+		},
   },
   components:{
   	navBar,
