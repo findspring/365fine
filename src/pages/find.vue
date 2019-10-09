@@ -129,13 +129,13 @@ export default {
 	}
 	.find-menu-item i{
 		font-size: .5rem;
-		color: #4978c4;
+		color: #1a91eb;
 	}
 	.find-menu-item p{
 		line-height: .8rem;
 		font-size: .28rem;
 	}
-	.hot-item{
+	/*.hot-item{
 		line-height: .88rem;
 		justify-content: space-between;
 	}
@@ -152,12 +152,12 @@ export default {
 		position: absolute;
 		left: -0.2rem;
 		top:.26rem;
-		background: #4978c4;
+		background: #1a91eb;
 		border-radius: .2rem;
 	}
 	.hot-item p{
 		
-	}
+	}*/
 	.find-hot a img{
 		width:100%;
 		border-radius: .1rem;

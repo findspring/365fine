@@ -126,6 +126,27 @@ body{
 }
 
 
+.hot-item{
+  line-height: .88rem;
+  justify-content: space-between;
+}
+.hot-item h4{
+  position:relative;
+  font-size: .32rem;
+  margin-left: .2rem;
+  font-weight: 400;
+}
+.hot-item h4:before{
+  content: '';
+  width:4px;
+  height: .34rem;
+  position: absolute;
+  left: -0.2rem;
+  top:.26rem;
+  background: #1a91eb;
+  border-radius: .2rem;
+}
+
 /*个性化*/
 .salary .van-tabs--card{
   padding-top: 0!important;
@@ -137,4 +158,16 @@ body{
 }
 .salary .van-tabs__nav--card .van-tab{
   line-height: .84rem;
+}
+.order .van-tabs__nav--card .van-tab{
+  flex-basis: 20%!important;
+}
+.order .van-tabs--card{
+  padding-top: 10px;
+}
+.order .van-tabs__nav--card{
+  margin:0 0;
+}
+.order .van-search{
+  border-radius: .08rem;
 }
