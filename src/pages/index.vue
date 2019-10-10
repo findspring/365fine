@@ -21,7 +21,7 @@
 				        </marquee>
 	        		</div>								
 			        <div class="product-items">
-			        	<div class="loan-item clearfix">
+			        	<div class="loan-item clearfix" @click="goPath('loan')">
 			        		<div class="loan-item-top">
 			        			<img src="../assets/images/cp01.png">
 			        			<h4>xxx卡</h4>
@@ -177,12 +177,30 @@
 	        	</div>
 	        </swiper-item>
 	        <swiper-item :style='selected_index==1?{position: "static"}:""'>
-	        	<div class="">
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        		<p>31313</p>
+	        	<div class="credit-page">
+	        		<div class="loan-item clearfix">
+								<div class="loan-item-hot"><van-icon name="fire" />HOT</div>
+				    		<div class="loan-item-top">
+				    			<img src="../assets/images/cp01.png">
+				    			<h4>民生信用卡</h4>
+				    			<p class="loan-date">查询结算</p>
+				    			<!-- <p class="loan-rate">月息0.03%</p> -->
+				    		</div>
+				    		<div class="loan-item-mid">
+				    			<div class="card-item-tips">
+				    				<span>通过率高</span>
+				    				<span>易下卡</span>
+				    				<span>额度大</span>
+				    			</div>
+				    			<div class="loan-item-vip flex">
+				    				<i class="iconfont icon-vip"></i><span>￥<b>80</b></span>
+				    			</div>
+				    		</div>
+				    		<div class="card-item-bottom">
+				    			<p>天天民生日，周周享优惠</p>
+				    			<p>普通用户&nbsp;￥<span>64</span></p>
+				    		</div>
+				    	</div>
 	        	</div>
 	        </swiper-item>
 	        <swiper-item :style='selected_index==2?{position: "static"}:""'>
@@ -193,8 +211,8 @@
 	        		<p>31313</p>
 	        		<p>31313</p>
 	        	</div>
-	        </swiper-item :style='selected_index==3?{position: "static"}:""'>
-	        <swiper-item :style='selected_index==4?{position: "static"}:""'>
+	        </swiper-item>
+	        <swiper-item :style='selected_index==3?{position: "static"}:""'>
 	        	<div class="">
 	        		<p>31313</p>
 	        		<p>31313</p>
@@ -203,7 +221,7 @@
 	        		<p>31313</p>
 	        	</div>
 	        </swiper-item>
-	        <swiper-item :style='selected_index==5?{position: "static"}:""'>
+	        <swiper-item :style='selected_index==4?{position: "static"}:""'>
 	        	<div class="">
 	        		<p>31313</p>
 	        		<p>31313</p>
@@ -223,7 +241,7 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem,Marquee, MarqueeItem } from 'vux';
 import navBar from "components/navBar";
-const list = () => ['精选', '美食', '电影', '酒店', '外卖'];
+const list = () => ['贷款', '信用卡', '电影', '酒店', '外卖'];
 
 export default {
 
@@ -276,6 +294,9 @@ export default {
 	.loan-page {
 		min-height: 11rem;
 	}
+	.credit-page{
+		margin-top: .24rem;
+	}
 	.loan-page i{
 		font-size: .4rem;
 		/*color:#48cfad;*/
@@ -291,6 +312,15 @@ export default {
 		overflow: hidden;
 		padding: .3rem .2rem .2rem .2rem;
 		margin-bottom: .2rem;
+	}
+	.loan-item-hot{
+		position:absolute;
+		right: .24rem;
+		top:0;
+		padding: .06rem .16rem;
+		border-radius:  0 0 .08rem .08rem;
+		background: #f45c5c;
+		color:#fff;
 	}
 	.loan-item-top{
 		display:flex;
@@ -345,6 +375,17 @@ export default {
 	.loan-item-vip span b{
 		font-size: .4rem;
 		margin-left: .04rem;
+	}
+	.card-item-bottom{
+		display: flex;
+		justify-content: space-between;
+	}
+	.card-item-bottom p{
+		color: #999;
+		font-size: .3rem;
+	}
+	.card-item-bottom p span{
+		color: #333;
 	}
 	.loan-item-bottom{}
 	.loan-item-bottom p{

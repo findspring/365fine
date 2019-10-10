@@ -17,7 +17,7 @@
 			<div class="search-credit">
 				<h3>信用卡产品</h3>
 				<div class="loan-item clearfix">
-					<div class="loan-item-hot">HOT</div>
+					<div class="loan-item-hot"><van-icon name="fire" />HOT</div>
 	    		<div class="loan-item-top">
 	    			<img src="../assets/images/cp01.png">
 	    			<h4>民生信用卡</h4>
@@ -106,6 +106,9 @@ export default {
 		border-radius:  0 0 .08rem .08rem;
 		background: #f45c5c;
 		color:#fff;
+	}
+	.loan-item-hot i{
+		margin-right: .06rem;
 	}
 	.loan-item-top{
 		display:flex;

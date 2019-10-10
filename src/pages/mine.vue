@@ -42,7 +42,7 @@
 				</div>
 				<!-- menu -->
 				<div class="mine-menu flex">
-					<div class="mine-item">
+					<div class="mine-item" @click="goPath('receipts')">
 						<i class="iconfont icon-shouzhi"></i>
 						<p>收支明细</p>
 					</div>
@@ -54,7 +54,7 @@
 						<i class="iconfont icon-kefu"></i>
 						<p>联系客服</p>
 					</div>
-					<div class="mine-item">
+					<div class="mine-item" @click="goPath('message')">
 						<i class="iconfont icon-msg"></i>
 						<p>消息</p>
 					</div>

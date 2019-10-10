@@ -171,3 +171,6 @@ body{
 .order .van-search{
   border-radius: .08rem;
 }
+.receipts .van-tab{
+  font-size: .32rem;
+}

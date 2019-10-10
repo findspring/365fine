@@ -179,6 +179,7 @@ export default {
 	.find-news-item img{
 		width: 2.6rem;
 		margin-right: .18rem;
+		height: 2rem;
 	}
 	.find-news-right{
 		width: 3.5rem;

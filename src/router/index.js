@@ -11,6 +11,8 @@ const friend = r => require.ensure([], () => r(require('pages/friend')), 'friend
 const salary = r => require.ensure([], () => r(require('pages/salary')), 'salary');
 const cash = r => require.ensure([], () => r(require('pages/cash')), 'cash');
 const personal = r => require.ensure([], () => r(require('pages/personal')), 'personal');
+const receipts = r => require.ensure([], () => r(require('pages/receipts')), 'receipts');
+const loan = r => require.ensure([], () => r(require('pages/loan')), 'loan');
 
 Vue.use(Router)
 
@@ -120,6 +122,24 @@ export default new Router({
 				keepAlive: true,
 			},
 			component: personal
+		}, {
+			path: "/receipts",
+			name: 'receipts',
+			meta: {
+				title: '收支明细',
+				flag: 'receipts',
+				keepAlive: true,
+			},
+			component: receipts
+		}, {
+			path: "/loan",
+			name: 'loan',
+			meta: {
+				title: '贷款详情',
+				flag: 'loan',
+				keepAlive: true,
+			},
+			component: loan
 		}
 
 	]
