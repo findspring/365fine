@@ -29,7 +29,7 @@
 						<b>0</b>
 						<p>总收入（元）</p>
 					</div>
-					<div class="money-item">
+					<div class="money-item" @click="goPath('withdraw')">
 						<b>0</b>
 						<p>可提现（元）</p>
 						<i><van-icon name="play" color="#999" /></i>

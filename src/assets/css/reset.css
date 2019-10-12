@@ -174,3 +174,6 @@ body{
 .receipts .van-tab{
   font-size: .32rem;
 }
+.withdraw .van-cell-group,.withdraw .van-cell--center{
+  border-radius: .08rem;
+}

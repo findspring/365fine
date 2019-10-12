@@ -13,6 +13,7 @@ const cash = r => require.ensure([], () => r(require('pages/cash')), 'cash');
 const personal = r => require.ensure([], () => r(require('pages/personal')), 'personal');
 const receipts = r => require.ensure([], () => r(require('pages/receipts')), 'receipts');
 const loan = r => require.ensure([], () => r(require('pages/loan')), 'loan');
+const withdraw = r => require.ensure([], () => r(require('pages/withdraw')), 'withdraw');
 
 Vue.use(Router)
 
@@ -140,6 +141,15 @@ export default new Router({
 				keepAlive: true,
 			},
 			component: loan
+		}, {
+			path: "/withdraw",
+			name: 'withdraw',
+			meta: {
+				title: '提现',
+				flag: 'withdraw',
+				keepAlive: true,
+			},
+			component: withdraw
 		}
 
 	]
