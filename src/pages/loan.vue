@@ -52,8 +52,8 @@
 			</div>
 		</div>
 		<div class="common-fixed flex">
-			<div class="apply-btn">申请办理</div>
-			<div class="loan-btn">推广贷款赚工资</div>
+			<div class="apply-btn" @click="goPath('apply')">申请办理</div>
+			<div class="loan-btn" @click="goPath('share')">推广贷款赚工资</div>
 		</div>
 	</div>
 </template>
@@ -67,6 +67,11 @@ export default {
     return {
 			progressImg:require('../assets/images/progress.png'),
     };
+  },
+  methods:{
+		goPath(val){
+			this.$router.push({name:val})
+		},
   },
 };
 </script>

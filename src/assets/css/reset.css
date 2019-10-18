@@ -101,6 +101,31 @@ body{
   color: #fff;
   font-size: .3rem
 }
+.common-fixed{
+  width: 100%;
+  height: 1.1rem;
+  padding: 1%;
+  background: #fff;
+  position: fixed;
+  left:0;
+  bottom:0;
+  justify-content: space-around;
+}
+.common-fixed div{
+  color: #fff;
+  height: .8rem;
+  line-height: .8rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.apply-btn{
+  width: 35%; 
+  background: linear-gradient(to bottom right, #1a91eb 0%,#68abee 100%);
+}
+.loan-btn{
+  width: 55%;
+  background: linear-gradient(to bottom right, #e85252 0%,#f17e0f 100%);
+}
 .fade-transition {
   transition: opacity .3s ease;
 }
@@ -176,4 +201,11 @@ body{
 }
 .withdraw .van-cell-group,.withdraw .van-cell--center{
   border-radius: .08rem;
+}
+
+.apply .van-cell{
+  padding: 15px 16px;
+}
+.apply .van-field__left-icon .van-icon, .van-field__right-icon .van-icon{
+  font-size: .4rem;
 }

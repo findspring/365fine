@@ -178,7 +178,7 @@
 	        </swiper-item>
 	        <swiper-item :style='selected_index==1?{position: "static"}:""'>
 	        	<div class="credit-page">
-	        		<div class="loan-item clearfix">
+	        		<div class="loan-item clearfix" @click="goPath('credit')">
 								<div class="loan-item-hot"><van-icon name="fire" />HOT</div>
 				    		<div class="loan-item-top">
 				    			<img src="../assets/images/cp01.png">

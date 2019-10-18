@@ -20,7 +20,7 @@
 			</div>
 			<div class="personal-item">
 				<span>昵称</span>
-				<div class="personal-right flex">
+				<div class="personal-right flex" @click="openDialog('昵称')">
 					<p>XXX</p>
 					<van-icon name="arrow" />
 				</div>
@@ -41,7 +41,7 @@
 			</div>
 			<div class="personal-item">
 				<span>手机号</span>
-				<div class="personal-right flex">
+				<div class="personal-right flex" @click="openDialog('手机号')">
 					<p>XXX</p>
 					<van-icon name="arrow" />
 				</div>
@@ -60,12 +60,51 @@
 		<div class="personal-info bgf">
 			<div class="personal-item">
 				<span>实名认证</span>
-				<div class="personal-right flex">
+				<div class="personal-right flex" @click="openDialog('实名认证')">
 					<p>未认证</p>
 					<van-icon name="arrow" />
 				</div>
 			</div>
 		</div>
+		<!-- dialog -->
+		<van-dialog
+		  v-model="dialogStatus"
+		  :title="dialogTitle"
+		  show-cancel-button
+		  :beforeClose="beforeClose"
+		>
+			<div class="dialog-main" v-if="dialogTitle == '手机号'">
+				<van-field
+			    v-model="phone"
+			    type="tel"
+			    maxlength="11"
+			    clearable
+			    placeholder="请输入手机号"
+			  />
+			</div>
+		  <div class="dialog-main" v-else-if="dialogTitle == '昵称'">
+				<van-field
+			    v-model="nickName"
+			    maxlength="10"
+			    clearable
+			    placeholder="请输入昵称"
+			  />
+			</div>
+			<div class="dialog-main" v-else-if="dialogTitle == '实名认证'">
+				<van-field
+			    v-model="realName"
+			    maxlength="10"
+			    clearable
+			    placeholder="请输入真实姓名"
+			  />
+			  <van-field
+			    v-model="idNum"
+			    maxlength="18"
+			    clearable
+			    placeholder="请输入身份证号码"
+			  />
+			</div>
+		</van-dialog>
 	</div>
 </template>
 
@@ -77,8 +116,28 @@ export default {
   data() {
     return {
 			headImg:require('../assets/images/active.png'),
+			dialogStatus:false,
+			dialogTitle:'',
+			phone:'',
+			nickName:'',
+			realName:"",
+			idNum:'',
     };
   },
+  methods:{
+  	openDialog(val){
+			this.dialogStatus = true;
+			this.dialogTitle = val;
+  	},
+  	beforeClose(action, done){
+		  if (action === 'confirm') {
+		    alert(1)
+		    done();
+		  } else {
+		    done();
+		  }
+  	}
+  }
 };
 </script>
 
@@ -113,5 +172,8 @@ export default {
 	}
 	.personal-right p.gray{
 		color: #999;
+	}
+	.dialog-main{
+		padding: .2rem;
 	}
 </style>

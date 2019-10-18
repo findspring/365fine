@@ -14,6 +14,10 @@ const personal = r => require.ensure([], () => r(require('pages/personal')), 'pe
 const receipts = r => require.ensure([], () => r(require('pages/receipts')), 'receipts');
 const loan = r => require.ensure([], () => r(require('pages/loan')), 'loan');
 const withdraw = r => require.ensure([], () => r(require('pages/withdraw')), 'withdraw');
+const apply = r => require.ensure([], () => r(require('pages/apply')), 'apply');
+const service = r => require.ensure([], () => r(require('pages/service')), 'service');
+const share = r => require.ensure([], () => r(require('pages/share')), 'share');
+const credit = r => require.ensure([], () => r(require('pages/credit')), 'credit');
 
 Vue.use(Router)
 
@@ -150,6 +154,42 @@ export default new Router({
 				keepAlive: true,
 			},
 			component: withdraw
+		}, {
+			path: "/apply",
+			name: 'apply',
+			meta: {
+				title: '申请',
+				flag: 'apply',
+				keepAlive: true,
+			},
+			component: apply
+		}, {
+			path: "/service",
+			name: 'service',
+			meta: {
+				title: '服务协议书',
+				flag: 'service',
+				keepAlive: true,
+			},
+			component: service
+		}, {
+			path: "/share",
+			name: 'share',
+			meta: {
+				title: '分享',
+				flag: 'share',
+				keepAlive: true,
+			},
+			component: share
+		}, {
+			path: "/credit",
+			name: 'credit',
+			meta: {
+				title: '信用卡',
+				flag: 'credit',
+				keepAlive: true,
+			},
+			component: credit
 		}
 
 	]
