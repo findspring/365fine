@@ -11,36 +11,34 @@
 			</van-search>
 		</van-sticky>			
 		<div class="serach-main">
-			<div class="search-nothing">
-				
+			<div class="search-nothing" v-if="creditcards.length == 0">
+				<p>暂无搜索产品</p>
 			</div>
-			<div class="search-credit">
-				<h3>信用卡产品</h3>
-				<div class="loan-item clearfix">
-					<div class="loan-item-hot"><van-icon name="fire" />HOT</div>
+			<div class="search-credit" v-else>
+				<!-- <h3>信用卡产品</h3> -->
+				<div class="loan-item clearfix" v-for="(val,index) in creditcards" :key="index" @click="goPath('credit')" >
+					<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 	    		<div class="loan-item-top">
-	    			<img src="../assets/images/cp01.png">
-	    			<h4>民生信用卡</h4>
-	    			<p class="loan-date">查询结算</p>
+	    			<img :src="'http://www.365qutui.cn/'+val.bank_logo">
+					    			<h4>{{val.card_name}}</h4>
+					    			<p class="loan-date">{{val.commission_check_date}}</p>
 	    			<!-- <p class="loan-rate">月息0.03%</p> -->
 	    		</div>
 	    		<div class="loan-item-mid">
 	    			<div class="card-item-tips">
-	    				<span>通过率高</span>
-	    				<span>易下卡</span>
-	    				<span>额度大</span>
+	    				<span v-for="(tipItem,k) in val.recommend_tips" :key="k">{{tipItem}}</span>
 	    			</div>
 	    			<div class="loan-item-vip flex">
-	    				<i class="iconfont icon-vip"></i><span>￥<b>80</b></span>
+	    				<i class="iconfont icon-vip"></i><span>￥<b>{{val.vip_commission}}</b></span>
 	    			</div>
 	    		</div>
 	    		<div class="card-item-bottom">
-	    			<p>天天民生日，周周享优惠</p>
-	    			<p>普通用户&nbsp;￥<span>64</span></p>
+	    			<p>{{val.recommed_mark}}</p>
+	    			<p>普通用户&nbsp;￥<span>{{val.member_commission}}</span></p>
 	    		</div>
 	    	</div>
 			</div>
-			<div class="search-loan">
+			<!-- <div class="search-loan">
 				<h3>贷款产品</h3>
 				<div class="loan-item clearfix">
 	    		<div class="loan-item-top">
@@ -61,7 +59,7 @@
 	    			<p>普通用户&nbsp;返<span>1.84%</span></p>
 	    		</div>
 	    	</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -73,29 +71,47 @@ export default {
   data() {
     return {
 			value:'',
+			creditcards:[],
     };
   },
   methods:{
+  	goPath(val){
+			this.$router.push({name:val})
+		},
   	onSearch(){
-
+			this.$http({
+        method: "get",
+        url: "/wechat/search/index?k="+this.value,
+        // data: this.$qs.stringify(params)
+      }).then((res) => {
+        let result = res.data.data;
+        this.creditcards = result.creditcards;
+      }).catch((err) => {});
   	},
   }
 };
 </script>
 
 <style lang="css" scoped>
+	.search-nothing{
+		margin-top: .24rem;
+		text-align: center;
+	}
+	.search-nothing p{
+		line-height: 1rem;
+	}
 	.search-loan h3,.search-credit h3{
 		line-height: 1rem;
 		font-size: .36rem;
 		font-weight: 400;
 	}
 	.loan-item{
+		margin-top: .24rem;
 		width: 100%;
 		background: #fff;
 		border-radius: .1rem;
 		overflow: hidden;
 		padding: .3rem .2rem .2rem .2rem;
-		margin-bottom: .2rem;
 		position: relative;
 	}
 	.loan-item-hot{
@@ -118,7 +134,7 @@ export default {
 		width: .4rem;
 	}
 	.loan-item-top h4{
-		font-size: .3rem;
+		font-size: .32rem;
 		margin-left: .1rem;
 
 	}
@@ -126,7 +142,7 @@ export default {
 		background: #f45c5c;
 		color: #fff;
 		font-size: .28rem;
-		padding: .1rem .14rem;
+		padding: .04rem .08rem;
 		border-radius: .06rem;
 		margin: 0 .1rem;
 	}
@@ -166,12 +182,12 @@ export default {
 	}
 	.card-item-tips span{
 		display: inline-block;
-		padding: .08rem .1rem;
+		padding: .04rem .08rem;
 		border:1px solid #f45c5c;
 		color:#f45c5c;
 		font-size: .24rem;
 		border-radius: .08rem;
-		margin-right: .06rem;
+		margin-right: .1rem;
 	}
 	.card-item-bottom{
 		display: flex;

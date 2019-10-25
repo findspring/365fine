@@ -2,6 +2,7 @@ import axios from 'axios';
 import Vue from 'vue';
 import qs from 'qs';
 
+axios.defaults.baseURL = process.env.API_ROOT;
 axios.interceptors.request.use(config => {
 	const _this = new Vue();
 	return config
@@ -11,20 +12,14 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use((res) => {
 	const _this = new Vue();
 	// 根据返回的code值做不同处理（和后台约定）
-	switch (res.data.errCode) {
-		case '0':
+	switch (res.data.code) {
+		case 200:
 			return res
 		case '8002':
 			location.href = res.data.errMsg;
 			return
-		case '8888':
-			location.href = res.data.errMsg;
-			return
-		case '8889':
-			location.href = res.data.errMsg;
-			return
-		case '9000':
-			return _this.$vux.toast.text(res.data.errMsg, 'middle')
+		case 400:
+			return _this.$vux.toast.text(res.data.msg, 'middle')
 		default:
 			_this.$vux.loading.hide()
 			return _this.$vux.toast.text(res.data.errMsg, 'middle')

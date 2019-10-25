@@ -4,7 +4,7 @@
 
 const path = require('path')
 // const _serverUrl = "139.159.159.137:8888/mockjsdata/5/ip";
-const _serverUrl = "192.168.1.24";
+const _serverUrl = "http://www.365qutui.cn/";
 // const _serverUrl = "139.159.159.137";
 
 module.exports = {
@@ -15,26 +15,26 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/wechat': {
-                target: 'http://' + _serverUrl + ':8089/wechat',
+                target: _serverUrl + '/api/wechat',
                 // target:'http://'+_serverUrl+':8184/wechat',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/wechat': '/'
                 }
             },
-            '/pub': {
-                target: 'http://' + _serverUrl + ':8089/pub',
-                // target:'http://'+_serverUrl+':8182/pub',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/pub': '/'
-                }
-            },
+            // '/pub': {
+            //     target: 'http://' + _serverUrl + ':8089/pub',
+            //     // target:'http://'+_serverUrl+':8182/pub',
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^/pub': '/'
+            //     }
+            // },
         },
 
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST
-        port: 8088, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: true,
         errorOverlay: true,
         notifyOnErrors: true,

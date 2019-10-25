@@ -2,7 +2,16 @@
 	<div id="find">
 		<!-- swipe -->
 		<div class="find-swiper">
-			<swiper :list="img_list" auto loop style="width:100%;margin:0 auto;border-radius: .1rem;" height="180px" dots-class="custom-bottom" dots-position="center"></swiper>
+			<van-swipe :autoplay="3000" :height="180">
+			  <van-swipe-item v-for="(item, index) in banner_imgs" :key="index">
+			    <img :src="'http://www.365qutui.cn/'+item">
+			  </van-swipe-item>
+			</van-swipe>
+			<!-- <swiper :aspect-ratio="300/800">
+				<swiper-item class="swiper-demo-img" v-for="(item, index) in Banner_imgs" :key="index">
+	        <img :src="'http://www.365qutui.cn/'+item">
+	      </swiper-item>
+			</swiper> -->
 		</div>
 		<!-- menu -->
 		<div class="find-menu flex">
@@ -24,10 +33,11 @@
 			</div>
 		</div>
 		<!-- notice -->
-		<div class="find-notice">
+		<div class="find-notice flex">
+			<van-icon name="bullhorn-o" />
 			<marquee>
-        <marquee-item v-for="i in 2" :key="i" @click.native="goNotice(i)">
-        	<p class="line-ellipsis02">{{(i)}}.大家好！由于节能施工改造，</p>
+        <marquee-item v-for="(item,index) in notices" :key="index" @click.native="goNotice(index)">
+        	<p class="line-ellipsis02">{{item.title}}</p>
         </marquee-item>
       </marquee>
 		</div>
@@ -47,14 +57,14 @@
 			<van-tabs v-model="activeName" sticky color="#1a91eb">
 				<van-tab title="全部" name="a" class="find-news-info">
 					<div class="find-news-all">
-						<div class="find-news-item">
+						<div class="find-news-item" v-for="(item,index) in credit_articles" :key="index">
 			    		<img src="../assets/images/news01.png" alt="">
 			    		<div class="find-news-right">
-			    			<h5 class="line-ellipsis02">xxxxxtitle你知道吗？</h5>
+			    			<h5 class="line-ellipsis02">{{item.post_title}}</h5>
 			    			<div class="flex find-news-bottom">
-			    				<p class="p1">推广引流</p>
-			    				<span>09-20</span>
-			    				<p class="p2"><i class="iconfont icon-eyes"></i>5355</p>
+			    				<p class="p1">{{item.cate_name}}</p>
+			    				<span>{{item.create_time}}</span>
+			    				<p class="p2"><i class="iconfont icon-eyes"></i>{{item.post_hits}}</p>
 			    			</div>
 			    		</div>
 			    	</div>
@@ -83,27 +93,35 @@ export default {
     return {
     	activeName:'a',
     	activeImg:require('../assets/images/active.png'),
-			img_list:[{
-				url: 'javascript:',
-				img: require('../assets/images/find01.png'),
-				// title: '送你一朵fua'
-				}, {
-				url: 'javascript:',
-				img: require('../assets/images/find02.png'),
-				// title: '送你一次旅行',
-			}],
+    	banner_imgs:[],
+    	notices:[],
 			listArr: ['全部', '贷款','信用卡'],
       selected_index:0,
+      credit_articles:[],
       // choosed:'全部',
 
     };
   },
+  mounted(){
+		this.getFindDatas();
+  },
   methods:{
-		goNotice(){
-
+		goNotice(index){
+			
 		},
 		goPath(val){
 			this.$router.push({name:val})
+		},
+		getFindDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/find/index",
+      }).then((res) => {
+        let result = res.data.data;
+        this.banner_imgs = result.banner_imgs;
+        this.notices = result.notices;
+        this.credit_articles = result.credit_articles;
+      }).catch((err) => {});
 		}
   },
   components: {
@@ -118,6 +136,11 @@ export default {
 	}
 	.find-swiper{
 		width:100%;
+	}
+	.find-swiper img{
+		width: 100%;
+		height: 180px;
+		border-radius: .08rem;
 	}
 	.find-menu{
 		margin:.4rem 0 .1rem 0;
@@ -158,6 +181,11 @@ export default {
 	.hot-item p{
 		
 	}*/
+	.find-notice i{
+		font-size: .4rem;
+		color: #1a91eb;
+		margin-right: .1rem;
+	}
 	.find-hot a img{
 		width:100%;
 		border-radius: .1rem;
@@ -207,4 +235,5 @@ export default {
 		margin-right: .08rem;
 	}
 </style>
+
 

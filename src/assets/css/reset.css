@@ -173,6 +173,10 @@ body{
 }
 
 /*个性化*/
+#wrapper .vux-tab .vux-tab-item.vux-tab-selected{
+  font-size: .32rem;
+  font-weight: bold;
+}
 .salary .van-tabs--card{
   padding-top: 0!important;
 }

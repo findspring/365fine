@@ -7,11 +7,12 @@
 					<i class="iconfont icon-sousuo" @click="goPath('search')"></i>
         	<!-- <i class="iconfont icon-xiaoxi"></i> -->
 				</div>
-	      <tab  class="index-tab" :line-width=2 active-color='#fc378c' v-model="selected_index">
+	      <tab  class="index-tab" :line-width=2 active-color='#1a91eb' v-model="selected_index">
 	        <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index1) in list2" @click="demo2 = item" :key="index1">{{item}}</tab-item>
 	      </tab>
 	      <swiper v-model="selected_index" height="100%"  :show-dots="false">
-	        <swiper-item :style='selected_index==0?{position: "static"}:""'>
+	      	<!-- 贷款-->
+	        <!-- <swiper-item :style='selected_index==0?{position: "static"}:""'>
 	        	<div class="loan-page">
 	        		<div class="loan-notice">
 	        			<marquee>
@@ -19,7 +20,7 @@
 				          	<p class="line-ellipsis02">{{(i)}}.大家好！由于节能施工改造，</p>
 				          </marquee-item>
 				        </marquee>
-	        		</div>								
+	        		</div>	
 			        <div class="product-items">
 			        	<div class="loan-item clearfix" @click="goPath('loan')">
 			        		<div class="loan-item-top">
@@ -175,35 +176,52 @@
 			        	</div>
 			        </div>
 	        	</div>
-	        </swiper-item>
-	        <swiper-item :style='selected_index==1?{position: "static"}:""'>
+	        </swiper-item> -->
+	        <swiper-item :style='selected_index==0?{position: "static"}:""'>
 	        	<div class="credit-page">
-	        		<div class="loan-item clearfix" @click="goPath('credit')">
-								<div class="loan-item-hot"><van-icon name="fire" />HOT</div>
-				    		<div class="loan-item-top">
-				    			<img src="../assets/images/cp01.png">
-				    			<h4>民生信用卡</h4>
-				    			<p class="loan-date">查询结算</p>
-				    			<!-- <p class="loan-rate">月息0.03%</p> -->
-				    		</div>
-				    		<div class="loan-item-mid">
-				    			<div class="card-item-tips">
-				    				<span>通过率高</span>
-				    				<span>易下卡</span>
-				    				<span>额度大</span>
-				    			</div>
-				    			<div class="loan-item-vip flex">
-				    				<i class="iconfont icon-vip"></i><span>￥<b>80</b></span>
-				    			</div>
-				    		</div>
-				    		<div class="card-item-bottom">
-				    			<p>天天民生日，周周享优惠</p>
-				    			<p>普通用户&nbsp;￥<span>64</span></p>
-				    		</div>
-				    	</div>
+	        		<div class="loan-notice flex">
+	        			<van-icon name="bullhorn-o" />
+	        			<marquee>
+				          <marquee-item v-for="(item,index) in notices" :key="index" @click.native="goNotice(index)">
+				          	<p class="line-ellipsis02">{{item}}</p>
+				          </marquee-item>
+				        </marquee>
+	        		</div>
+	        		<div class="credit-cards">
+	        			<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
+									<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
+					    		<div class="loan-item-top">
+					    			<img :src="'http://www.365qutui.cn/'+val.bank_logo">
+					    			<h4>{{val.card_name}}</h4>
+					    			<p class="loan-date">{{val.commission_check_date}}</p>
+					    			<!-- <p class="loan-rate">月息0.03%</p> -->
+					    		</div>
+					    		<div class="loan-item-mid">
+					    			<div class="card-item-tips">
+					    				<span v-for="(tipItem,k) in val.recommend_tips" :key="k">{{tipItem}}</span>
+					    			</div>
+					    			<div class="loan-item-vip flex">
+					    				<i class="iconfont icon-vip"></i><span>￥<b>{{val.vip_commission}}</b></span>
+					    			</div>
+					    		</div>
+					    		<div class="card-item-bottom">
+					    			<p>{{val.recommed_mark}}</p>
+					    			<p>普通用户&nbsp;￥<span>{{val.member_commission}}</span></p>
+					    		</div>
+					    	</div>
+	        		</div>		        		
 	        	</div>
 	        </swiper-item>
-	        <swiper-item :style='selected_index==2?{position: "static"}:""'>
+	        <!-- <swiper-item :style='selected_index==1?{position: "static"}:""'>
+	        	<div class="">
+	        		<p>31313</p>
+	        		<p>31313</p>
+	        		<p>31313</p>
+	        		<p>31313</p>
+	        		<p>31313</p>
+	        	</div>
+	        </swiper-item> -->
+	        <!-- <swiper-item :style='selected_index==2?{position: "static"}:""'>
 	        	<div class="">
 	        		<p>31313</p>
 	        		<p>31313</p>
@@ -220,16 +238,7 @@
 	        		<p>31313</p>
 	        		<p>31313</p>
 	        	</div>
-	        </swiper-item>
-	        <swiper-item :style='selected_index==4?{position: "static"}:""'>
-	        	<div class="">
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        		<p>31313</p>
-	        	</div>
-	        </swiper-item>
+	        </swiper-item> -->
 	      </swiper>
 	    </div>
 		</div>
@@ -241,7 +250,7 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem,Marquee, MarqueeItem } from 'vux';
 import navBar from "components/navBar";
-const list = () => ['贷款', '信用卡', '电影', '酒店', '外卖'];
+const list = () => ['信用卡'];
 
 export default {
 
@@ -251,14 +260,26 @@ export default {
       list2: list(),
       demo2: '精选',
       selected_index: 0,
+      notices:[],
+      creditcards:[],
     };
   },
   mounted(){
-
+		this.getCreditDatas();
   },
   methods:{
 		goPath(val){
 			this.$router.push({name:val})
+		},
+		getCreditDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/spread/index",
+      }).then((res) => {
+        let result = res.data.data;
+        this.notices = result.notices;
+        this.creditcards = result.creditcards;
+      }).catch((err) => {});
 		},
   },
   components:{
@@ -305,6 +326,11 @@ export default {
 	.loan-notice{
 		padding: .2rem 0;
 	}
+	.loan-notice i{
+		font-size: .4rem;
+		color: #1a91eb;
+		margin-right: .1rem;
+	}
 	.loan-item{
 		width: 100%;
 		background: #fff;
@@ -312,6 +338,7 @@ export default {
 		overflow: hidden;
 		padding: .3rem .2rem .2rem .2rem;
 		margin-bottom: .2rem;
+		position:relative;
 	}
 	.loan-item-hot{
 		position:absolute;
@@ -330,7 +357,7 @@ export default {
 		width: .4rem;
 	}
 	.loan-item-top h4{
-		font-size: .3rem;
+		font-size: .32rem;
 		margin-left: .1rem;
 
 	}
@@ -338,7 +365,7 @@ export default {
 		background: #f45c5c;
 		color: #fff;
 		font-size: .28rem;
-		padding: .1rem .14rem;
+		padding: .04rem .08rem;
 		border-radius: .06rem;
 		margin: 0 .1rem;
 	}
@@ -375,6 +402,15 @@ export default {
 	.loan-item-vip span b{
 		font-size: .4rem;
 		margin-left: .04rem;
+	}
+	.card-item-tips span{
+		display: inline-block;
+    padding: .04rem .08rem;
+    border: 1px solid #f45c5c;
+    color: #f45c5c;
+    font-size: .24rem;
+    border-radius: .08rem;
+    margin-right: .1rem;
 	}
 	.card-item-bottom{
 		display: flex;

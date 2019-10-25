@@ -9,10 +9,9 @@ import install from 'utils/install'
 import obj from 'utils/index'
 import Vant from 'vant';
 import {
-	ToastPlugin,
-	LoadingPlugin,
-	AlertPlugin
+	ToastPlugin
 } from 'vux'
+Vue.use(ToastPlugin)
 
 import {
 	WechatPlugin
@@ -31,23 +30,23 @@ let httpHead = {
 	"clientTime": new Date().getTime(),
 	"authToken": authToken,
 }
-router.beforeEach((to, from, next) => {
-	// 获取authToken
-	let authToken = localStorage.getItem("authToken") || "";
-	if (!authToken) {
-		authToken = obj.getQueryString("authToken")
-		if (authToken) {
-			localStorage.setItem("authToken", authToken)
-		}
-	}
-	//title变化
-	if (to.meta.title) {
-		document.title = to.meta.title
-	}
-	Vue.prototype.$http.defaults.headers['common'] = httpHead;
-	Vue.prototype.$http.defaults.headers['common']['authToken'] = localStorage.getItem("authToken") || "";
-	next()
-});
+// router.beforeEach((to, from, next) => {
+// 	// 获取authToken
+// 	let authToken = localStorage.getItem("authToken") || "";
+// 	if (!authToken) {
+// 		authToken = obj.getQueryString("authToken")
+// 		if (authToken) {
+// 			localStorage.setItem("authToken", authToken)
+// 		}
+// 	}
+// 	//title变化
+// 	if (to.meta.title) {
+// 		document.title = to.meta.title
+// 	}
+// 	Vue.prototype.$http.defaults.headers['common'] = httpHead;
+// 	Vue.prototype.$http.defaults.headers['common']['authToken'] = localStorage.getItem("authToken") || "";
+// 	next()
+// });
 
 fastClick.attach(document.body)
 Vue.config.productionTip = false
