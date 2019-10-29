@@ -52,6 +52,23 @@ export default {
 			activeName:'a',
     };
   },
+  mounted(){
+  	this.getReceiptDatas();
+  },
+  methods: {
+  	goPath(val){
+			this.$router.push({name:val})
+		},
+  	getReceiptDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/finance/index",
+      }).then((res) => {
+        let result = res.data.data;
+        // this.creditImg = result.Carddetail_img_h5;
+      }).catch((err) => {});
+		}
+  }
 };
 </script>
 

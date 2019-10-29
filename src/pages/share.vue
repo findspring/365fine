@@ -35,7 +35,12 @@ export default {
     return {
 			headImg:require('../assets/images/share.png'),
 			copyText:"这就是你想复制的东东",
+			shareArr:[],
     };
+  },
+  mounted(){
+  	let nowId = this.$route.query.id;
+		this.getShareDatas(nowId);
   },
   methods:{
   	copy(){
@@ -51,7 +56,16 @@ export default {
         // 释放内存
         clipboard.destroy()
       })
-  	}
+  	},
+  	getShareDatas(cardId){
+			this.$http({
+        method: "get",
+        url: "/wechat/creditcard/cardshare?id="+cardId,
+      }).then((res) => {
+        let result = res.data.data;
+        this.shareArr = result.shareArr;
+      }).catch((err) => {});
+		},
   }
 };
 </script>

@@ -18,6 +18,7 @@ const apply = r => require.ensure([], () => r(require('pages/apply')), 'apply');
 const service = r => require.ensure([], () => r(require('pages/service')), 'service');
 const share = r => require.ensure([], () => r(require('pages/share')), 'share');
 const credit = r => require.ensure([], () => r(require('pages/credit')), 'credit');
+const vip = r => require.ensure([], () => r(require('pages/vip')), 'vip');
 
 Vue.use(Router)
 
@@ -190,6 +191,15 @@ export default new Router({
 				keepAlive: true,
 			},
 			component: credit
+		}, {
+			path: "/vip",
+			name: 'vip',
+			meta: {
+				title: '会员',
+				flag: 'vip',
+				keepAlive: true,
+			},
+			component: vip
 		}
 
 	]

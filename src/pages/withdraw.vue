@@ -20,12 +20,16 @@
 		    center
 		    clearable
 		    placeholder="请输入提现金额"
+		    @input="inpuChange"
+		    @clear="clearNum"
 		  >
-		    <van-button slot="button" size="small" type="primary">全部提现</van-button>
+		    <van-button slot="button" size="small" type="primary" @click="carryAll">全部提现</van-button>
 		  </van-field>
 		</van-cell-group>
 		<!-- btn -->
-		<div class="withdraw-btn">立即提现</div>
+		<div class="withdraw-btn">
+			<van-button round color="#1a91eb" type="info" size="large" :disabled="isDisabled">立即提现</van-button>
+		</div>
 
 	</div>
 </template>
@@ -38,8 +42,48 @@ export default {
   data() {
     return {
 			moneyNum:'',
+			isDisabled:true,
     };
   },
+  watch:{
+		// moneyNum:{
+		// 	handle(newVal,oldVal){
+		// 		if(newVal.length){
+		// 			console.log(newVal);
+		// 			this.isDisabled = false;
+		// 		}
+		// 	},
+		// }
+  },
+  mounted(){
+  	this.getWithDrawDatas();
+  },
+  methods: {
+  	inpuChange(value){
+			if(value.length > 0){
+				this.isDisabled = false;
+			}
+  	},
+  	clearNum(){
+  		this.isDisabled = true;
+  	},
+  	carryAll(){
+			this.moneyNum = 1;
+			this.isDisabled = false;
+  	},
+  	goPath(val){
+			this.$router.push({path:val})
+		},
+  	getWithDrawDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/finance/carry",
+      }).then((res) => {
+        let result = res.data.data;
+        // this.creditImg = result.Carddetail_img_h5;
+      }).catch((err) => {});
+		}
+  }
 };
 </script>
 
@@ -77,12 +121,12 @@ export default {
 	.withdraw-btn{
 		width: 100%;
 		margin-top:.64rem;
-		height: .96rem;
+		/*height: .96rem;
 		line-height: .96rem;
 		text-align: center;
 		background: #c0c0c0;
 		color: #fff;
 		font-size: .4rem;
-		border-radius: 1rem;
+		border-radius: 1rem;*/
 	}
 </style>

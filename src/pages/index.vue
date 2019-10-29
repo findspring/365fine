@@ -188,7 +188,7 @@
 				        </marquee>
 	        		</div>
 	        		<div class="credit-cards">
-	        			<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
+	        			<div class="loan-item clearfix" @click="goCredit(val.id)" v-for="(val,index) in creditcards" :key="index">
 									<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 					    		<div class="loan-item-top">
 					    			<img :src="'http://www.365qutui.cn/'+val.bank_logo">
@@ -268,6 +268,11 @@ export default {
 		this.getCreditDatas();
   },
   methods:{
+  	goCredit(id){
+  		this.$router.push({path:'credit', query:{
+          id:id
+        }})
+  	},
 		goPath(val){
 			this.$router.push({name:val})
 		},

@@ -22,14 +22,13 @@ module.exports = {
                     '^/wechat': '/'
                 }
             },
-            // '/pub': {
-            //     target: 'http://' + _serverUrl + ':8089/pub',
-            //     // target:'http://'+_serverUrl+':8182/pub',
-            //     changeOrigin: true,
-            //     pathRewrite: {
-            //         '^/pub': '/'
-            //     }
-            // },
+            '/user': {
+                target: _serverUrl + '/api/user',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/user': '/'
+                }
+            },
         },
 
         // Various Dev Server settings

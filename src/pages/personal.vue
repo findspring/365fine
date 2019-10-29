@@ -13,7 +13,7 @@
 					  fit="cover"
 					  width="0.72rem"
 					  height="0.72rem"
-					  :src="headImg"
+					  :src="wx_info.headimgurl"
 					/>
 					<van-icon name="arrow" />
 				</div>					
@@ -21,35 +21,35 @@
 			<div class="personal-item">
 				<span>昵称</span>
 				<div class="personal-right flex" @click="openDialog('昵称')">
-					<p>XXX</p>
+					<p>{{wx_info.nickname}}</p>
 					<van-icon name="arrow" />
 				</div>
 			</div>
 			<div class="personal-item">
-				<span>i代号</span>
+				<span>推号</span>
 				<div class="personal-right flex">
-					<p class="no-arrow">11111</p>
+					<p class="no-arrow">{{wx_info.user_id}}</p>
 					<!-- <van-icon name="arrow" /> -->
 				</div>
 			</div>
 			<div class="personal-item">
 				<span>微信号</span>
 				<div class="personal-right flex">
-					<p class="gray">填写微信号，获取现金奖励</p>
+					<p class="gray">{{wx_info.third_party}}</p>
 					<van-icon name="arrow" />
 				</div>
 			</div>
 			<div class="personal-item">
 				<span>手机号</span>
 				<div class="personal-right flex" @click="openDialog('手机号')">
-					<p>XXX</p>
+					<p>{{user_info.mobile}}</p>
 					<van-icon name="arrow" />
 				</div>
 			</div>
 			<div class="personal-item">
 				<span>推荐人信息</span>
 				<div class="personal-right flex">
-					<p class="no-arrow">平台</p>
+					<p class="no-arrow">{{user_info.invite_user_id}}</p>
 				</div>
 			</div>
 		</div>
@@ -122,7 +122,12 @@ export default {
 			nickName:'',
 			realName:"",
 			idNum:'',
+			user_info:[],
+			wx_info:[],
     };
+  },
+  mounted(){
+  	this.getPersonalDatas();
   },
   methods:{
   	openDialog(val){
@@ -136,7 +141,17 @@ export default {
 		  } else {
 		    done();
 		  }
-  	}
+  	},
+  	getPersonalDatas(){
+			this.$http({
+        method: "get",
+        url: "/user/profile/wechat_userset",
+      }).then((res) => {
+        let result = res.data.data;
+        this.user_info = result.user_info;
+        this.wx_info = result.wx_info;
+      }).catch((err) => {});
+		}
   }
 };
 </script>

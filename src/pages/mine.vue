@@ -10,12 +10,15 @@
 					  fit="cover"
 					  width="1.6rem"
 					  height="1.6rem"
-					  :src="headImg"
+					  :src="wx_info.headimgurl"
 					/>
 				</div>
 				<div class="mine-personal">
-					<h4>XXXX<span>普通用户</span> </h4>
-					<p>i代号：673288 <span>未实名</span></p>
+					<h4>{{wx_info.nickname}}
+						<span v-if="user_info.user_type == 2">普通会员</span>
+						<span v-else-if="user_info.user_type == 3">VIP会员</span>
+					</h4>
+					<p>推号：{{wx_info.user_id}} <span>未实名</span></p>
 				</div>
 				<div class="mine-feature">
 					<p><b>尊享VIP</b> <span>开通享更多权益</span><i class="iconfont icon-arrow"></i></p>
@@ -26,16 +29,16 @@
 				<!-- money -->
 				<div class="mine-money flex">
 					<div class="money-item">
-						<b>0</b>
+						<b>{{user_info.total_balance}}</b>
 						<p>总收入（元）</p>
 					</div>
 					<div class="money-item" @click="goPath('withdraw')">
-						<b>0</b>
+						<b>{{user_info.balance}}</b>
 						<p>可提现（元）</p>
 						<i><van-icon name="play" color="#999" /></i>
 					</div>
 					<div class="money-item" @click="goPath('order')">
-						<b>0</b>
+						<b>{{today_order}}</b>
 						<p>今日订单</p>
 						<i><van-icon name="play" color="#999" /></i>
 					</div>					
@@ -80,21 +83,32 @@ export default {
   data() {
     return {
 			headImg:require('../assets/images/active.png'),
+			user_info:{},
+			wx_info:{},
+			today_order:'',
     };
   },
   components:{
   	navBar,
   },
+  mounted(){
+  	this.getInfoDatas();
+  },
   methods: {
   	goPath(val){
-			this.$router.push({name:val})
+			this.$router.push({path:val})
 		},
-  	cardSearch(){
-
-  	},
-  	loanSearch(){
-
-  	},
+  	getInfoDatas(){
+			this.$http({
+        method: "get",
+        url: "user/profile/wechat_userinfo",
+      }).then((res) => {
+        let result = res.data.data;
+        this.user_info = result.user_info;
+        this.wx_info = result.wx_info;
+        this.today_order = result.today_order;
+      }).catch((err) => {});
+		}
   }
 };
 </script>

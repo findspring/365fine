@@ -1,7 +1,7 @@
 <template>
 	<div class="pd24 salary">
 		<van-tabs v-model="activeName" sticky color="#1a91eb" type="card">
-			<van-tab title="贷款" name="a">
+			<van-tab title="信用卡" name="a">
 				<div class="salary-tab">
 					<div class="loan-title flex">
 						<p class="li1">产品名称</p>
@@ -10,30 +10,30 @@
 						<p class="li4">条件</p>
 					</div>
 					<div class="loan-infos">
-						<ul class="flex">
+						<ul class="flex" v-for="(item,index) in creditlist" :key="index">
 							<li class="li1">
-								<img src="../assets/images/loan01.png" height="20" alt="">
-								<span>房司令</span>
-								<p>实时结算</p>
+								<img :src="'http://www.365qutui.cn/'+item.bank_logo" height="20" alt="">
+								<span>{{item.card_name}}</span>
+								<p>{{item.commission_check_date}}</p>
 							</li>
 							<li class="li2">
-								<p><span>3.2%</span>/单</p>
+								<p><span>{{item.member_commission}}</span>/单</p>
 							</li>
 							<li class="li3">
-								<p><span>3.2%</span>/单</p>
+								<p><span>{{item.vip_commission}}</span>/单</p>
 							</li>
 							<li class="li4">
-								<p>推荐新户首次下款成功</p>
+								<p>{{item.commission_check_condition}}</p>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</van-tab>
-		  <van-tab title="信用卡" name="b">
+		  <!-- <van-tab title="信用卡" name="b">
 		  	<div class="salary-tab">
 					22222
 				</div>
-		  </van-tab>
+		  </van-tab> -->
 		</van-tabs>
 	</div>
 </template>
@@ -45,8 +45,26 @@ export default {
 
   data() {
     return {
-			activeName: 'a'
+			activeName: 'a',
+			creditlist:[],
     };
+  },
+  mounted(){
+		this.getSalaryDatas();
+  },
+  methods:{
+		goPath(val){
+			this.$router.push({name:val})
+		},
+		getSalaryDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/find/commissionlist",
+      }).then((res) => {
+        let result = res.data.data;
+        this.creditlist = result.creditlist;
+      }).catch((err) => {});
+		},
   },
 };
 </script>
@@ -76,13 +94,17 @@ export default {
 	.li4{
 		width:15%;
 	}
+	.li1 p{
+	}
 	.loan-infos ul{
 		padding:.3rem 0;
 		border-bottom: 1px solid #e4e4e4;
 	}
 	.loan-infos .li1 p{
+		margin:0 auto;
 		margin-top: .08rem;
-		display: inline-block;
+		width: 60%;
+		/*display: inline-block;*/
 		color: #fff;
 		padding: .08rem .12rem;
 		border-radius: .08rem;

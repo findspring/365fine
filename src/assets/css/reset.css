@@ -213,3 +213,7 @@ body{
 .apply .van-field__left-icon .van-icon, .van-field__right-icon .van-icon{
   font-size: .4rem;
 }
+
+.ask-main .van-cell{
+  font-weight: 700;
+}

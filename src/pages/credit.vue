@@ -15,13 +15,25 @@ export default {
 
   data() {
     return {
-			creditImg:require('../assets/images/credit.jpg'),
+			creditImg:'',
     };
+  },
+  mounted(){
+  	this.getInfoDatas();
   },
   methods:{
 		goPath(val){
-			this.$router.push({name:val})
+			this.$router.push({path:val,query:{id:this.$route.query.id}})
 		},
+		getInfoDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/creditcard/cardinfo?id="+this.$route.query.id,
+      }).then((res) => {
+        let result = res.data.data;
+        this.creditImg = result.cardinfo.carddetail_img_h5;
+      }).catch((err) => {});
+		}
   },
 };
 </script>

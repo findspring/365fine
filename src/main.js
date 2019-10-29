@@ -28,25 +28,30 @@ Vue.use(Vant);
 let httpHead = {
 	// "channel": isWeixin?'1':(isios?'2':(isandroid?'3':'5')),//微信(公众号)传1，ios传2，安卓传3，其他传5
 	"clientTime": new Date().getTime(),
-	"authToken": authToken,
+	// "authToken": authToken,
 }
-// router.beforeEach((to, from, next) => {
-// 	// 获取authToken
-// 	let authToken = localStorage.getItem("authToken") || "";
-// 	if (!authToken) {
-// 		authToken = obj.getQueryString("authToken")
-// 		if (authToken) {
-// 			localStorage.setItem("authToken", authToken)
-// 		}
-// 	}
-// 	//title变化
-// 	if (to.meta.title) {
-// 		document.title = to.meta.title
-// 	}
-// 	Vue.prototype.$http.defaults.headers['common'] = httpHead;
-// 	Vue.prototype.$http.defaults.headers['common']['authToken'] = localStorage.getItem("authToken") || "";
-// 	next()
-// });
+router.beforeEach((to, from, next) => {
+	// 获取authToken
+	// 4b5c98b6800a03b3d18a9dbcd55107743ae7d11fab03c5006fc07d2fa479e430
+	let authToken = "4b5c98b6800a03b3d18a9dbcd55107743ae7d11fab03c5006fc07d2fa479e430";
+	// let authToken = localStorage.getItem("authToken") || "";
+	// if (!authToken) {
+	// 	authToken = obj.getQueryString("XX-Token")
+	// 	if (authToken) {
+	// 		localStorage.setItem("XX-Token", authToken)
+	// 	}
+	// }
+	if (authToken) {
+		localStorage.setItem("XX-Token", authToken)
+	}
+	//title变化
+	if (to.meta.title) {
+		document.title = to.meta.title
+	}
+	// Vue.prototype.$http.defaults.headers['common'] = httpHead;
+	Vue.prototype.$http.defaults.headers['XX-Token'] = localStorage.getItem("XX-Token") || "";
+	next()
+});
 
 fastClick.attach(document.body)
 Vue.config.productionTip = false
