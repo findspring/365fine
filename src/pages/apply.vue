@@ -4,14 +4,14 @@
 			<van-cell-group>
 			  <van-field
 			    v-model="username"
-			    required
+			    disabled
 			    clearable
 			    left-icon="contact"
 			    placeholder="请输入用户名"
 			  />
 			  <van-field
 			    v-model="idCard"
-			    required
+			    disabled
 			    clearable
 			    type="number"
 			    maxlength="18"
@@ -23,7 +23,7 @@
 			    v-model="phone"
 			    type="tel"
 			    maxlength="11"
-			    required
+			    disabled
 			    clearable
 			    left-icon="phone-o"
 			    placeholder="请输入手机号"
@@ -34,7 +34,7 @@
 				<p>我已阅读并同意<span @click="goPath('service')">《服务协议书》</span></p>
 			</div>
 		</div>
-		<div class="common-btn apply-btn">提交申请</div>
+		<div class="common-btn apply-btn" @click="apply">提交申请</div>
 	</div>
 </template>
 
@@ -48,12 +48,48 @@ export default {
 			username:'',
 			idCard:'',
 			phone:'',
-			checked:false,
+			checked:true,
     };
+  },
+  mounted(){
+  	this.getApplyDatas();
   },
   methods:{
 		goPath(val){
-			this.$router.push({name:val})
+			this.$router.push({path:val})
+		},
+		apply(){
+			if(!this.checked){
+				this.$toast({position:'top',message:'请选择已阅读服务协议',duration: 1000,});
+				return false;
+			}
+			let params = {};
+			params.id = this.$route.query.id;
+			params.realname = this.moneyNum;
+			params.realname = this.moneyNum;
+			params.realname = this.moneyNum;
+			this.$http({
+        method: "post",
+        url: "/wechat/creditcard/cardapply",
+        data: this.$qs.stringify(params)
+      }).then((res) => {
+        let result = res.data.data;
+        this.$toast({type:'success',message:res.data.msg,duration: 1000,});
+        setTimeout(() => {
+          this.goPath('mine');
+        }, 1000)
+        
+      }).catch((err) => {});
+		},
+		getApplyDatas(){
+			this.$http({
+        method: "get",
+        url: "/wechat/finance/carry",
+      }).then((res) => {
+        let result = res.data.data;
+        this.balance = result.balance;
+        this.bankinfo = result.bankinfo;
+      }).catch((err) => {});
 		},
   },
 };

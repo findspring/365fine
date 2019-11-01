@@ -18,9 +18,12 @@
 						<span v-if="user_info.user_type == 2">普通会员</span>
 						<span v-else-if="user_info.user_type == 3">VIP会员</span>
 					</h4>
-					<p>推号：{{wx_info.user_id}} <span>未实名</span></p>
+					<p>推号：{{wx_info.user_id}} 
+						<span v-if="user_info.identified == 0">未实名</span>
+						<span v-else class="identified">已实名</span>
+					</p>
 				</div>
-				<div class="mine-feature">
+				<div class="mine-feature" @click="goPath('vip')">
 					<p><b>尊享VIP</b> <span>开通享更多权益</span><i class="iconfont icon-arrow"></i></p>
 				</div>
 			</div>
@@ -220,5 +223,9 @@ export default {
 		width: 100%;
 		margin-top: .24rem;
 		border-radius: .08rem;
+	}
+	.identified{
+		background:#000!important;
+		color:#fff;
 	}
 </style>

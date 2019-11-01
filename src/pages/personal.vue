@@ -15,14 +15,15 @@
 					  height="0.72rem"
 					  :src="wx_info.headimgurl"
 					/>
-					<van-icon name="arrow" />
+					<!-- <van-icon name="arrow" /> -->
 				</div>					
 			</div>
 			<div class="personal-item">
 				<span>昵称</span>
-				<div class="personal-right flex" @click="openDialog('昵称')">
+				<div class="personal-right flex">
+					<!-- <div class="personal-right flex" @click="openDialog('昵称')"> -->
 					<p>{{wx_info.nickname}}</p>
-					<van-icon name="arrow" />
+					<!-- <van-icon name="arrow" /> -->
 				</div>
 			</div>
 			<div class="personal-item">
@@ -34,16 +35,18 @@
 			</div>
 			<div class="personal-item">
 				<span>微信号</span>
-				<div class="personal-right flex">
-					<p class="gray">{{wx_info.third_party}}</p>
+				<div class="personal-right flex" @click="openDialog('微信号')">
+					<p class="gray" v-if="wx_info.third_party">{{wx_info.third_party}}</p>
+					<p class="gray" v-else>请输入您的微信号</p>
 					<van-icon name="arrow" />
 				</div>
 			</div>
 			<div class="personal-item">
 				<span>手机号</span>
-				<div class="personal-right flex" @click="openDialog('手机号')">
+				<div class="personal-right flex">
+					<!-- <div class="personal-right flex" @click="openDialog('手机号')"> -->
 					<p>{{user_info.mobile}}</p>
-					<van-icon name="arrow" />
+					<!-- <van-icon name="arrow" /> -->
 				</div>
 			</div>
 			<div class="personal-item">
@@ -60,9 +63,13 @@
 		<div class="personal-info bgf">
 			<div class="personal-item">
 				<span>实名认证</span>
-				<div class="personal-right flex" @click="openDialog('实名认证')">
+				<div v-if="user_info.identified == 0" class="personal-right flex" @click="openDialog('实名认证')">
 					<p>未认证</p>
 					<van-icon name="arrow" />
+				</div>
+				<div v-else class="personal-right flex">
+					<p>已认证</p>
+					<!-- <van-icon name="arrow" /> -->
 				</div>
 			</div>
 		</div>
@@ -88,6 +95,14 @@
 			    maxlength="10"
 			    clearable
 			    placeholder="请输入昵称"
+			  />
+			</div>
+			<div class="dialog-main" v-else-if="dialogTitle == '微信号'">
+				<van-field
+			    v-model="thirdName"
+			    maxlength="10"
+			    clearable
+			    placeholder="请输入微信号"
 			  />
 			</div>
 			<div class="dialog-main" v-else-if="dialogTitle == '实名认证'">
@@ -121,9 +136,11 @@ export default {
 			phone:'',
 			nickName:'',
 			realName:"",
+			thirdName:"",
 			idNum:'',
 			user_info:[],
 			wx_info:[],
+			identifyStatus:'未认证'
     };
   },
   mounted(){
@@ -136,8 +153,38 @@ export default {
   	},
   	beforeClose(action, done){
 		  if (action === 'confirm') {
-		    alert(1)
-		    done();
+		    if(this.dialogTitle == '微信号'){
+		    	if(this.thirdName){
+		    		this.$http({
+			        method: "get",
+			        url: "/user/profile/wechat_usersetwxno?wxno="+this.thirdName,
+			      }).then((res) => {
+			        // let result = res.data.data;
+		        	this.wx_info.third_party = this.thirdName;
+			      }).catch((err) => {});
+			      done();
+		    	}else{
+		    		this.$toast({message:'微信号不能为空',duration: 500,});
+		    		done(false);
+		    	}						
+		    }else if(this.dialogTitle == '实名认证'){
+		    	if(this.realName && this.idNum){
+		    		this.$http({
+			        method: "get",
+			        url: "/user/profile/wechat_usersetrealname?name="+this.realName+'&idcard='+this.idNum,
+			      }).then((res) => {
+			      	console.log(111,res.data.code);
+			        let result = res.data.data;
+		        	this.user_info.identified = 1;
+		        	done();
+			      }).catch((err) => {
+							done(false);
+			      });
+		    	}else{
+		    		this.$toast({message:'请输入完整身份信息',duration: 500,});
+		    		done(false);
+		    	}	
+		    }
 		  } else {
 		    done();
 		  }

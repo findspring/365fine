@@ -19,7 +19,7 @@ axios.interceptors.response.use((res) => {
 			location.href = res.data.errMsg;
 			return
 		case 400:
-			return _this.$vux.toast.text(res.data.msg, 'middle')
+		return _this.$vux.toast.text(res.data.msg, 'middle')
 		default:
 			_this.$vux.loading.hide()
 			return _this.$vux.toast.text(res.data.errMsg, 'middle')
