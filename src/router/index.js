@@ -19,6 +19,8 @@ const service = r => require.ensure([], () => r(require('pages/service')), 'serv
 const share = r => require.ensure([], () => r(require('pages/share')), 'share');
 const credit = r => require.ensure([], () => r(require('pages/credit')), 'credit');
 const vip = r => require.ensure([], () => r(require('pages/vip')), 'vip');
+const recommond = r => require.ensure([], () => r(require('pages/recommond')), 'recommond');
+const reapply = r => require.ensure([], () => r(require('pages/reapply')), 'reapply');
 
 Vue.use(Router)
 
@@ -200,6 +202,24 @@ export default new Router({
 				keepAlive: true,
 			},
 			component: vip
+		}, {
+			path: "/recommond",
+			name: 'recommond',
+			meta: {
+				title: '推荐',
+				flag: 'recommond',
+				keepAlive: true,
+			},
+			component: recommond
+		}, {
+			path: "/reapply",
+			name: 'reapply',
+			meta: {
+				title: '申请',
+				flag: 'reapply',
+				keepAlive: true,
+			},
+			component: reapply
 		}
 
 	]
