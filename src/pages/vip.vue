@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="common-fixed">
-			<div class="vip-btn" @click="buyVip">立即购买</div>
+			<div class="vip-btn" @click="getApiData">立即购买</div>
 		</div>
 	</div>
 </template>
@@ -40,10 +40,50 @@ export default {
 
     };
   },
+  mounted(){
+  	this.$wechat.onMenuShareTimeline({
+      title: 'hello VUX'
+    })
+  },
   methods:{
-  	buyVip(){
-  		
-  	}
+  	getApiData(){
+  		let params = {};
+			params.Invite_id = '';
+  		this.$http({
+        method: "get",
+        url: "/user/profile/wechat_buyvip",
+        data: this.$qs.stringify(params)
+      }).then((res) => {
+        let result = res.data.data;
+        this.buyVip(result);
+      }).catch((err) => {});
+  	},
+  	buyVip(data){				
+  		let vm = this;
+  		if (typeof WeixinJSBridge == "undefined"){
+		    if( document.addEventListener ){
+		      document.addEventListener('WeixinJSBridgeReady', vm.jsApiCall(data), false);
+		    }else if (document.attachEvent){
+		      document.attachEvent('WeixinJSBridgeReady', vm.jsApiCall(data)); 
+		      document.attachEvent('onWeixinJSBridgeReady', vm.jsApiCall(data));
+		    }
+			}else{
+			  vm.jsApiCall(data);
+			}
+  	},
+  	jsApiCall(data){
+  		console.log('1111',data);
+			WeixinJSBridge.invoke(
+				'getBrandWCPayRequest',
+				data,
+				function(res){
+					console.log('222',res);
+					// WeixinJSBridge.log(res.err_msg);
+					// alert(res.err_code+res.err_desc+res.err_msg);
+				}
+			);
+		},
+
   }
 };
 </script>
