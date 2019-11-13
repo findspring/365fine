@@ -72,12 +72,14 @@ export default {
 			}
   	},
   	jsApiCall(data){
-  		console.log('1111',data);
 			WeixinJSBridge.invoke(
 				'getBrandWCPayRequest',
 				data,
 				function(res){
-					console.log('222',res);
+					if(res.err_msg == "get_brand_wcpay_request:ok" ){
+						// this.$toast({position:'top',message:'支付成功后江自动跳转到我的页面',duration: 500,});
+						this.$router.push({path:'mine'})
+					}
 					// WeixinJSBridge.log(res.err_msg);
 					// alert(res.err_code+res.err_desc+res.err_msg);
 				}
