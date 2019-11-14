@@ -190,7 +190,7 @@ export default new Router({
 			meta: {
 				title: '信用卡',
 				flag: 'credit',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: credit
 		}, {
