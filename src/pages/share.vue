@@ -1,27 +1,51 @@
 <template>
 	<div class="share">
-		<div class="share-item flex">
-			<div class="share-left">
-				<van-image
-				  width="1rem"
-				  height="1rem"
-				  fit="cover"
-				  :src="headImg"
-				/>
-			</div>
-			<div class="share-right">
-				<div class="share-top flex">
-					<div>
-						<h4>豆豆钱推广</h4>
-						<p>10-16 15:49</p>
-					</div>
-					<div><van-button class="tag-read"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="copyText" @click="copy">复制文案</van-button></div>
+		<div>
+			<div class="share-item flex" v-for="(item,index) in shareArr" :key="index">
+				<div class="share-left">
+					<van-image
+					  width="1rem"
+					  height="1rem"
+					  fit="cover"
+					  :src="item[1]"
+					/>
 				</div>
-				<div class="share-content">
-					<p>5万现金正在路上，燃眉之急就要解决了！维信现在主推豆豆钱！如果你年龄20-50周岁，芝麻分700以上，征信没逾期问题，可放心点链接：</p>
+				<div class="share-right">
+					<div class="share-top flex">
+						<div>
+							<h4>豆豆钱推广</h4>
+							<p>10-16 15:49</p>
+						</div>
+						<div><van-button :class="'copy'+`${index}`"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="item[1]" @click="copy(index)">复制文案</van-button></div>
+					</div>
+					<div class="share-content">
+						<p>5万现金正在路上，燃眉之急就要解决了！维信现在主推豆豆钱！如果你年龄20-50周岁，芝麻分700以上，征信没逾期问题，可放心点链接：</p>
+					</div>
 				</div>
 			</div>
 		</div>
+			<!-- <div class="share-item flex">
+				<div class="share-left">
+					<van-image
+					  width="1rem"
+					  height="1rem"
+					  fit="cover"
+					  :src="headImg"
+					/>
+				</div>
+				<div class="share-right">
+					<div class="share-top flex">
+						<div>
+							<h4>豆豆钱推广</h4>
+							<p>10-16 15:49</p>
+						</div>
+						<div><van-button class="tag-read"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="copyText" @click="copy">复制文案</van-button></div>
+					</div>
+					<div class="share-content">
+						<p>5万现金正在路上，燃眉之急就要解决了！维信现在主推豆豆钱！如果你年龄20-50周岁，芝麻分700以上，征信没逾期问题，可放心点链接：</p>
+					</div>
+				</div>
+			</div> -->
 	</div>
 </template>
 
@@ -43,10 +67,12 @@ export default {
 		this.getShareDatas(nowId);
   },
   methods:{
-  	copy(){
-			var clipboard = new Clipboard('.tag-read')
+  	copy(index){
+  		let _this = this;
+			var clipboard = new Clipboard('.copy'+index);
       clipboard.on('success', e => {
-        console.log('复制成功')
+      	_this.$toast({position:'top',message:'复制成功',duration: 500,});
+        // console.log('复制成功')
         // 释放内存
         clipboard.destroy()
       })
@@ -63,7 +89,7 @@ export default {
         url: "/wechat/creditcard/cardshare?id="+cardId,
       }).then((res) => {
         let result = res.data.data;
-        this.shareArr = result.shareArr;
+        this.shareArr = result.spread_material;
       }).catch((err) => {});
 		},
   }

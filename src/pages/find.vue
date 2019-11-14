@@ -192,7 +192,7 @@ export default {
 	}
 	.find-news-info{
 		width: 100%;
-		min-height: 18rem;
+		/*min-height: 18rem;*/
 	}
 	.find-news-all{
 		padding: .1rem .24rem;
@@ -203,6 +203,9 @@ export default {
 		display: flex;
 		border-bottom: 1px solid #e4e4e4;
 		padding: .1rem;
+	}
+	.find-news-all .find-news-item:last-child{
+		border:none;
 	}
 	.find-news-item img{
 		width: 2.6rem;

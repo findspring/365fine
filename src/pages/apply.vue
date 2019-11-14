@@ -3,7 +3,7 @@
 		<div class="apply-main bgf">
 			<van-cell-group>
 			  <van-field
-			    v-model="username"
+			    v-model="realName"
 			    disabled
 			    clearable
 			    left-icon="contact"
@@ -20,7 +20,7 @@
 			    placeholder="请输入身份证号码"
 			  />
 			  <van-field
-			    v-model="phone"
+			    v-model="mobile"
 			    type="tel"
 			    maxlength="11"
 			    disabled
@@ -45,7 +45,7 @@ export default {
 
   data() {
     return {
-			username:'',
+			realName:'',
 			idCard:'',
 			phone:'',
 			checked:true,
@@ -84,11 +84,12 @@ export default {
 		getApplyDatas(){
 			this.$http({
         method: "get",
-        url: "/wechat/finance/carry",
+        url: "/wechat/creditcard/cardapply",
       }).then((res) => {
-        let result = res.data.data;
-        this.balance = result.balance;
-        this.bankinfo = result.bankinfo;
+        let result = res.data.data.userinfo;
+        this.realName = result.realname;
+        this.idCard = result.idcard;
+        this.mobile = result.mobile;
       }).catch((err) => {});
 		},
   },

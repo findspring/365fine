@@ -46,7 +46,7 @@ export default new Router({
 			meta: {
 				title: '发现',
 				flag: 'find',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: find
 		}, {
@@ -55,7 +55,7 @@ export default new Router({
 			meta: {
 				title: '订单',
 				flag: 'order',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: order
 		}, {
@@ -64,7 +64,7 @@ export default new Router({
 			meta: {
 				title: '我的',
 				flag: 'mine',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: mine
 		}, {
@@ -82,7 +82,7 @@ export default new Router({
 			meta: {
 				title: '消息',
 				flag: 'message',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: message
 		}, {
@@ -109,7 +109,7 @@ export default new Router({
 			meta: {
 				title: '工资表',
 				flag: 'salary',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: salary
 		}, {
@@ -136,7 +136,7 @@ export default new Router({
 			meta: {
 				title: '收支明细',
 				flag: 'receipts',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: receipts
 		}, {
@@ -154,7 +154,7 @@ export default new Router({
 			meta: {
 				title: '提现',
 				flag: 'withdraw',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: withdraw
 		}, {
@@ -181,7 +181,7 @@ export default new Router({
 			meta: {
 				title: '分享',
 				flag: 'share',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: share
 		}, {
