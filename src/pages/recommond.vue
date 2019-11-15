@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import util from '../utils/index'
 export default {
 
   name: 'recommond',
@@ -23,7 +24,7 @@ export default {
   },
   methods:{
 		goPath(val){
-			this.$router.push({path:val,query:{id:this.$route.query.id}})
+			this.$router.push({path:val,query:{id:this.$route.query.id,invite_id:util.getQueryString('invite_id')}})
 		},
 		getInfoDatas(){
 			this.$http({

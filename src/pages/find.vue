@@ -57,7 +57,7 @@
 			<van-tabs v-model="activeName" sticky color="#1a91eb">
 				<van-tab title="全部" name="a" class="find-news-info">
 					<div class="find-news-all">
-						<div class="find-news-item" v-for="(item,index) in credit_articles" :key="index">
+						<div class="find-news-item" v-for="(item,index) in credit_articles" :key="index" @click="goDetail(item.id)">
 			    		<img src="../assets/images/news01.png" alt="">
 			    		<div class="find-news-right">
 			    			<h5 class="line-ellipsis02">{{item.post_title}}</h5>
@@ -70,11 +70,11 @@
 			    	</div>
 					</div>
 				</van-tab>
-			  <van-tab title="贷款" name="b" class="find-news-info">
+			  <!-- <van-tab title="信用卡" name="b" class="find-news-info">
 			  	<div class="salary-tab">
-						22222
+						敬请期待
 					</div>
-			  </van-tab>
+			  </van-tab> -->
 			</van-tabs>  
 		</div>
 		<!-- navbar -->
@@ -109,8 +109,11 @@ export default {
 		goNotice(index){
 			
 		},
+		goDetail(id){
+			this.$router.push({path:'news',query:{id:id}})
+		},
 		goPath(val){
-			this.$router.push({name:val})
+			this.$router.push({path:val})
 		},
 		getFindDatas(){
 			this.$http({

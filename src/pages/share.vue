@@ -7,19 +7,19 @@
 					  width="1rem"
 					  height="1rem"
 					  fit="cover"
-					  :src="item[1]"
+					  :src="'http://www.365qutui.cn/'+item.logo"
 					/>
 				</div>
 				<div class="share-right">
 					<div class="share-top flex">
 						<div>
-							<h4>豆豆钱推广</h4>
-							<p>10-16 15:49</p>
+							<h4>{{item.title}}</h4>
+							<p>{{item.time}}</p>
 						</div>
-						<div><van-button :class="'copy'+`${index}`"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="item[1]" @click="copy(index)">复制文案</van-button></div>
+						<div><van-button :class="'copy'+`${index}`"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="item.spread_url" @click="copy(index)">复制文案</van-button></div>
 					</div>
 					<div class="share-content">
-						<p>5万现金正在路上，燃眉之急就要解决了！维信现在主推豆豆钱！如果你年龄20-50周岁，芝麻分700以上，征信没逾期问题，可放心点链接：</p>
+						<p>{{item.content}}</p>
 					</div>
 				</div>
 			</div>
@@ -98,13 +98,17 @@ export default {
 
 <style lang="css" scoped>
 	.share{
-		background: #fff;
-		min-height: 13.3rem;
-		padding: .3rem;
+		/*background: #fff;*/
+		/*min-height: 13.3rem;*/
+		padding: .24rem;
 	}
 	.share-item{
 		width: 100%;
 		align-items: flex-start;
+		background: #fff;
+    padding: .24rem;
+    border-radius: .08rem;
+    margin-bottom:.24rem;
 	}
 	.share-left{
 		width: 1rem;

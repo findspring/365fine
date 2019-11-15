@@ -47,7 +47,7 @@ export default {
     return {
 			realName:'',
 			idCard:'',
-			phone:'',
+			mobile:'',
 			checked:true,
     };
   },
@@ -65,9 +65,9 @@ export default {
 			}
 			let params = {};
 			params.id = this.$route.query.id;
-			params.realname = this.moneyNum;
-			params.realname = this.moneyNum;
-			params.realname = this.moneyNum;
+			params.realname = this.realName;
+			params.idcard = this.idCard;
+			params.mobile = this.mobile;
 			this.$http({
         method: "post",
         url: "/wechat/creditcard/cardapply",

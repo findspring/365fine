@@ -21,6 +21,7 @@ const credit = r => require.ensure([], () => r(require('pages/credit')), 'credit
 const vip = r => require.ensure([], () => r(require('pages/vip')), 'vip');
 const recommond = r => require.ensure([], () => r(require('pages/recommond')), 'recommond');
 const reapply = r => require.ensure([], () => r(require('pages/reapply')), 'reapply');
+const news = r => require.ensure([], () => r(require('pages/news')), 'news');
 
 Vue.use(Router)
 
@@ -208,7 +209,7 @@ export default new Router({
 			meta: {
 				title: '推荐',
 				flag: 'recommond',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: recommond
 		}, {
@@ -217,9 +218,18 @@ export default new Router({
 			meta: {
 				title: '申请',
 				flag: 'reapply',
-				keepAlive: true,
+				keepAlive: false,
 			},
 			component: reapply
+		}, {
+			path: "/news",
+			name: 'news',
+			meta: {
+				title: '咨询详情',
+				flag: 'news',
+				keepAlive: false,
+			},
+			component: news
 		}
 
 	]
