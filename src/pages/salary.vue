@@ -100,6 +100,9 @@ export default {
 		padding:.3rem 0;
 		border-bottom: 1px solid #e4e4e4;
 	}
+	.loan-infos ul:last-child{
+		border: none;
+	}
 	.loan-infos .li1 p{
 		margin:0 auto;
 		margin-top: .08rem;

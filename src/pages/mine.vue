@@ -23,7 +23,7 @@
 						<span v-else class="identified">已实名</span>
 					</p>
 				</div>
-				<div class="mine-feature" @click="goPath('vip')">
+				<div class="mine-feature" @click="goPath('vip')"  v-if="user_info.user_type != 3">
 					<p><b>尊享VIP</b> <span>开通享更多权益</span><i class="iconfont icon-arrow"></i></p>
 				</div>
 			</div>

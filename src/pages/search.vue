@@ -12,7 +12,8 @@
 		</van-sticky>			
 		<div class="serach-main">
 			<div class="search-nothing" v-if="creditcards.length == 0">
-				<p>暂无搜索产品</p>
+				<img :src="noneImg" alt="">
+				<p v-if="textShow">暂无搜索产品</p>
 			</div>
 			<div class="search-credit" v-else>
 				<!-- <h3>信用卡产品</h3> -->
@@ -72,6 +73,8 @@ export default {
     return {
 			value:'',
 			creditcards:[],
+			textShow:false,
+			noneImg:require('../assets/images/none.png'),
     };
   },
   methods:{
@@ -86,6 +89,9 @@ export default {
       }).then((res) => {
         let result = res.data.data;
         this.creditcards = result.creditcards;
+        if(!this.creditcards.length){
+  				this.textShow = true;
+        }
       }).catch((err) => {});
   	},
   }

@@ -2,17 +2,19 @@
 	<div class="pd24">
 		<img src="../assets/images/friend.png"  width="100%" alt="">
 		<div class="friend-infos bgf">
-			<h5>Ta通过你的邀请，加入会员只需</h5>
+			<h5>Ta通过扫描下方二维码，加入会员只需</h5>
 			<div class="friend-vip">
 				<p class="p1">￥<b>99.00</b></p>
 				<p class="p2">原价199元</p>
 			</div>
 			<h5>邀请成功后，你可获得<span>20~66元</span><br/>随机现金奖励。</h5>
-			<div class="friend-btn">立即邀请Ta</div>
-			<a href="javascript:;" class="friend-log">本月还有5个邀约名额，邀约记录 <i class="iconfont icon-arrow"></i></a>
-			<div class="friend-tip">
+			<img :src="'http://www.365qutui.cn/'+codeImg" v-if="codeImg">
+			<van-loading type="spinner" color="#1989fa" v-else/>
+			<!-- <div class="friend-btn">立即邀请Ta</div>
+			<a href="javascript:;" class="friend-log">本月还有5个邀约名额，邀约记录 <i class="iconfont icon-arrow"></i></a> -->
+			<!-- <div class="friend-tip">
 				注: 邀请好友不参与推荐有钱活动奖励，通过“邀请好友”购买会员的用户不参与推荐有钱“推荐3人额外奖励”好礼
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -24,9 +26,24 @@ export default {
 
   data() {
     return {
-
+    	codeImg:'',
     };
   },
+  mounted(){
+  	this.getFriendDatas();
+  },
+  methods: {
+  	getFriendDatas(){
+			this.$http({
+        method: "get",
+        url: "/user/profile/wechat_invitefriends",
+      }).then((res) => {
+        let result = res.data.data;
+        this.codeImg = result.invite_qrcode_img;
+      }).catch((err) => {});
+		}
+  }
+
 };
 </script>
 
@@ -43,6 +60,10 @@ export default {
 		font-weight: 400;
 		padding: .3rem 0;
 		line-height: .48rem;
+	}
+	.friend-infos img{
+		width: 3rem;
+		text-align: center;
 	}
 	.friend-vip{
 		margin: .3rem 0;

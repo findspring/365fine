@@ -4,11 +4,11 @@
 		<div class="withdraw-top">
 			<ul>
 				<li>					
-					<b>{{balance.balance}}</b>
+					<b>{{balance.total_balance}}</b>
 					<p>总收入(元)</p>
 				</li>
 				<li>
-					<b>{{balance.total_balance}}</b>
+					<b>{{balance.balance}}</b>
 					<p>可提现(元)</p>
 				</li>
 			</ul>

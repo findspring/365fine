@@ -23,7 +23,8 @@
 				<i class="iconfont icon-yaoqing"></i>
 				<p>邀请好友</p>
 			</div>
-			<div class="find-menu-item" @click="goPath('cash')">
+			<div class="find-menu-item" >
+				<!-- @click="goPath('cash')" -->
 				<i class="iconfont icon-xianjin"></i>
 				<p>现金任务</p>
 			</div>

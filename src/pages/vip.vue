@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import util from '../utils/index'
 export default {
 
   name: 'vip',
@@ -48,11 +49,10 @@ export default {
   methods:{
   	getApiData(){
   		let params = {};
-			params.Invite_id = '';
+			let Invite_id = util.getQueryString('invite_id') || '';
   		this.$http({
         method: "get",
-        url: "/user/profile/wechat_buyvip",
-        data: this.$qs.stringify(params)
+        url: "/user/profile/wechat_buyvip?Invite_id="+Invite_id,
       }).then((res) => {
         let result = res.data.data;
         this.buyVip(result);
