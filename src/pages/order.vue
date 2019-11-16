@@ -13,6 +13,23 @@
 		  	<van-tabs v-model="activeCard" type="card" color="#1a91eb" title-active-color="#fff" @click="changeTab">
 				  <van-tab title="全部" name="1">
 				  	<div class="card-tab">
+				  		<div class="order-list">
+				  			<div class="order-item" >
+				  				<div class="order-top">
+				  					<span></span>
+				  					<p>申请时间 <time>20191011</time></p>
+				  				</div>
+				  				<div class="order-main">
+				  					<ul>
+				  						<li><p><label for="">姓名</label><span>XXX</span></p></li>
+				  						<li><p><label for="">订单编号</label> <span>XXX</span></p></li>
+				  						<li><p><label for="">手机号码</label> <span>XXX</span></p></li>
+				  						<li><p><label for="">银行</label> <span>XXX</span></p></li>
+				  						<li><p><label for="">状态</label> <span>XXX</span></p></li>
+				  					</ul>
+				  				</div>
+				  			</div>
+				  		</div>
 							<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
 								<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 				    		<div class="loan-item-top">
@@ -224,6 +241,63 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+	.order-item{
+		background: #fff;
+		border-radius: .08rem;
+		margin-bottom: .24rem;
+	}
+	.order-top{
+		position: relative;
+		width: 100%;
+		height: .88rem;
+		line-height: .88rem;
+		border-bottom: 1px solid #e4e4e4;
+	}
+	.order-top p{
+		margin-left: .24rem;
+		font-size: .28rem;
+		color: #666;
+	}
+	.order-top span{
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: .23rem;
+		height: .42rem;
+		width: .08rem;
+		background: red;
+	}
+	.order-top p time{
+		margin-left: .2rem;
+		color: #000;
+	}
+	.order-main{}
+	.order-main ul{
+		padding: .18rem .24rem;
+		overflow: hidden;
+	}
+	.order-main ul li{
+		width: 50%;
+		float: left;
+		line-height: .64rem;
+	}
+	.order-main ul li label{
+		float: left;
+		display: inline-block;
+		width: 1.2rem;
+		height: .64rem;
+		line-height: .64rem;
+		text-align: justify;
+		color: #666;
+	}
+	.order-main ul li label:after{
+		content: " ";
+    display: inline-block;
+    padding-left: 100%;
+	}
+	.order-main ul li span{
+		margin-left: .2rem;
+	}
 	.card-tab{
 		border-radius: .1rem;
 		margin:.2rem 0rem;
