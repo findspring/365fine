@@ -16,7 +16,7 @@
 							<h4>{{item.title}}</h4>
 							<p>{{item.time}}</p>
 						</div>
-						<div><van-button :class="'copy'+`${index}`"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="item.spread_url" @click="copy(index)">复制文案</van-button></div>
+						<div><van-button :class="'copy'+`${index}`"  round  size="small" color="linear-gradient(to right, #f17e0f, #fbac60)" :data-clipboard-text="item.content+item.spread_url" @click="copy(index)">复制文案</van-button></div>
 					</div>
 					<div class="share-content">
 						<p>{{item.content}}</p>

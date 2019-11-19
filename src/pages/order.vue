@@ -13,19 +13,22 @@
 		  	<van-tabs v-model="activeCard" type="card" color="#1a91eb" title-active-color="#fff" @click="changeTab">
 				  <van-tab title="全部" name="1">
 				  	<div class="card-tab">
-				  		<div class="order-list">
-				  			<div class="order-item" >
+				  		<div class="nothing" v-if="orderArr.length == 0">
+								<img :src="noneImg" alt="">
+							</div>
+				  		<div class="order-list" v-else>
+				  			<div class="order-item" v-for="(item,index) in orderArr" :key="index">
 				  				<div class="order-top">
 				  					<span></span>
-				  					<p>申请时间 <time>20191011</time></p>
+				  					<p>申请时间 <time>{{item.createtime}}</time></p>
 				  				</div>
 				  				<div class="order-main">
 				  					<ul>
-				  						<li><p><label for="">姓名</label><span>XXX</span></p></li>
-				  						<li><p><label for="">订单编号</label> <span>XXX</span></p></li>
-				  						<li><p><label for="">手机号码</label> <span>XXX</span></p></li>
-				  						<li><p><label for="">银行</label> <span>XXX</span></p></li>
-				  						<li><p><label for="">状态</label> <span>XXX</span></p></li>
+				  						<li><p><label for="">姓名</label><span>{{item.realname}}</span></p></li>
+				  						<li><p><label for="">订单编号</label> <span>{{item.id}}</span></p></li>
+				  						<li><p><label for="">手机号码</label> <span>{{item.mobile}}</span></p></li>
+				  						<li><p><label for="">银行</label> <span>{{item.creditcard_name}}</span></p></li>
+				  						<li><p><label for="">状态</label> <span class="red">{{item.status}}</span></p></li>
 				  					</ul>
 				  				</div>
 				  			</div>
@@ -55,6 +58,26 @@
 				  </van-tab>
 				  <van-tab title="进行中" name="2">
 				  	<div class="card-tab">
+				  		<div class="nothing" v-if="orderArr.length == 0">
+								<img :src="noneImg" alt="">
+							</div>
+				  		<div class="order-list" v-else>
+				  			<div class="order-item" v-for="(item,index) in orderArr" :key="index">
+				  				<div class="order-top">
+				  					<span></span>
+				  					<p>申请时间 <time>{{item.createtime}}</time></p>
+				  				</div>
+				  				<div class="order-main">
+				  					<ul>
+				  						<li><p><label for="">姓名</label><span>{{item.realname}}</span></p></li>
+				  						<li><p><label for="">订单编号</label> <span>{{item.id}}</span></p></li>
+				  						<li><p><label for="">手机号码</label> <span>{{item.mobile}}</span></p></li>
+				  						<li><p><label for="">银行</label> <span>{{item.creditcard_name}}</span></p></li>
+				  						<li><p><label for="">状态</label> <span class="red">{{item.status}}</span></p></li>
+				  					</ul>
+				  				</div>
+				  			</div>
+				  		</div>
 							<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
 								<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 				    		<div class="loan-item-top">
@@ -80,6 +103,26 @@
 				  </van-tab>
 				  <van-tab title="已结算" name="3">
 				  	<div class="card-tab">
+				  		<div class="nothing" v-if="orderArr.length == 0">
+								<img :src="noneImg" alt="">
+							</div>
+				  		<div class="order-list" v-else>
+				  			<div class="order-item" v-for="(item,index) in orderArr" :key="index">
+				  				<div class="order-top">
+				  					<span></span>
+				  					<p>申请时间 <time>{{item.createtime}}</time></p>
+				  				</div>
+				  				<div class="order-main">
+				  					<ul>
+				  						<li><p><label for="">姓名</label><span>{{item.realname}}</span></p></li>
+				  						<li><p><label for="">订单编号</label> <span>{{item.id}}</span></p></li>
+				  						<li><p><label for="">手机号码</label> <span>{{item.mobile}}</span></p></li>
+				  						<li><p><label for="">银行</label> <span>{{item.creditcard_name}}</span></p></li>
+				  						<li><p><label for="">状态</label> <span class="red">{{item.status}}</span></p></li>
+				  					</ul>
+				  				</div>
+				  			</div>
+				  		</div>
 							<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
 								<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 				    		<div class="loan-item-top">
@@ -105,6 +148,26 @@
 				  </van-tab>
 				  <van-tab title="已失效" name="4">
 				  	<div class="card-tab">
+				  		<div class="nothing" v-if="orderArr.length == 0">
+								<img :src="noneImg" alt="">
+							</div>
+				  		<div class="order-list" v-else>
+				  			<div class="order-item" v-for="(item,index) in orderArr" :key="index">
+				  				<div class="order-top">
+				  					<span></span>
+				  					<p>申请时间 <time>{{item.createtime}}</time></p>
+				  				</div>
+				  				<div class="order-main">
+				  					<ul>
+				  						<li><p><label for="">姓名</label><span>{{item.realname}}</span></p></li>
+				  						<li><p><label for="">订单编号</label> <span>{{item.id}}</span></p></li>
+				  						<li><p><label for="">手机号码</label> <span>{{item.mobile}}</span></p></li>
+				  						<li><p><label for="">银行</label> <span>{{item.creditcard_name}}</span></p></li>
+				  						<li><p><label for="">状态</label> <span class="red">{{item.status}}</span></p></li>
+				  					</ul>
+				  				</div>
+				  			</div>
+				  		</div>
 							<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
 								<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 				    		<div class="loan-item-top">
@@ -130,6 +193,26 @@
 				  </van-tab>
 				  <van-tab title="待申诉" name="5">
 				  	<div class="card-tab">
+				  		<div class="nothing" v-if="orderArr.length == 0">
+								<img :src="noneImg" alt="">
+							</div>
+				  		<div class="order-list" v-else>
+				  			<div class="order-item" v-for="(item,index) in orderArr" :key="index">
+				  				<div class="order-top">
+				  					<span></span>
+				  					<p>申请时间 <time>{{item.createtime}}</time></p>
+				  				</div>
+				  				<div class="order-main">
+				  					<ul>
+				  						<li><p><label for="">姓名</label><span>{{item.realname}}</span></p></li>
+				  						<li><p><label for="">订单编号</label> <span>{{item.id}}</span></p></li>
+				  						<li><p><label for="">手机号码</label> <span>{{item.mobile}}</span></p></li>
+				  						<li><p><label for="">银行</label> <span>{{item.creditcard_name}}</span></p></li>
+				  						<li><p><label for="">状态</label> <span class="red">{{item.status}}</span></p></li>
+				  					</ul>
+				  				</div>
+				  			</div>
+				  		</div>
 							<div class="loan-item clearfix" @click="goPath('credit')" v-for="(val,index) in creditcards" :key="index">
 								<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 				    		<div class="loan-item-top">
@@ -200,13 +283,15 @@ export default {
     	// activeLoan:1,
     	card_order:[],
     	creditcards:[],
+    	orderArr:[],
+    	noneImg:require('../assets/images/none.png'),
     }
   },
   components:{
   	navBar,
   },
   mounted(){
-		this.getCardDatas('');
+		this.getOrderDatas('');
   },
   methods: {
   	goPath(val){
@@ -217,30 +302,34 @@ export default {
   	},
   	changeTab(name){
 			if(name == 1){
-				this.getCardDatas('');
+				this.getOrderDatas('');
 			}else if(name == 2){
-				this.getCardDatas(1);
+				this.getOrderDatas(1);
 			}else if(name == 3){
-				this.getCardDatas(2);
+				this.getOrderDatas(2);
 			}else if(name == 4){
-				this.getCardDatas(3);
+				this.getOrderDatas(3);
 			}else if(name == 5){
-				this.getCardDatas(4);
+				this.getOrderDatas(4);
 			}
   	},
-  	getCardDatas(type){
+  	getOrderDatas(type){
 			this.$http({
         method: "get",
-        url: "/wechat/spread/index?status="+type,
+        url: "/wechat/order/index?status="+type,
       }).then((res) => {
         let result = res.data.data;
-        this.creditcards = result.creditcards;
+        this.orderArr = result.card_order;
       }).catch((err) => {});
 		},
   }
 }
 </script>
 <style lang="css" scoped>
+	.nothing{
+		text-align: center;
+		margin-top: .24rem;
+	}
 	.order-item{
 		background: #fff;
 		border-radius: .08rem;
@@ -277,9 +366,15 @@ export default {
 		overflow: hidden;
 	}
 	.order-main ul li{
-		width: 50%;
+		width: 100%;
 		float: left;
 		line-height: .64rem;
+	}
+	.order-main ul li:first-child{
+		width:45%;
+	}
+	.order-main ul li:nth-child(2){
+		width:55%;
 	}
 	.order-main ul li label{
 		float: left;
@@ -296,7 +391,10 @@ export default {
     padding-left: 100%;
 	}
 	.order-main ul li span{
-		margin-left: .2rem;
+		margin-left: .24rem;
+	}
+	.order-main ul li span.red{
+		color:red;
 	}
 	.card-tab{
 		border-radius: .1rem;

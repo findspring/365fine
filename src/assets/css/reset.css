@@ -217,3 +217,7 @@ body{
 .ask-main .van-cell{
   font-weight: 700;
 }
+
+.login-form .van-field__control{
+  padding-left: .2rem;
+}

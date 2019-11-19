@@ -12,7 +12,7 @@
 import util from '../utils/index'
 export default {
 
-  name: 'recommond',
+  name: 'recommend',
 
   data() {
     return {

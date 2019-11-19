@@ -33,14 +33,14 @@ let httpHead = {
 router.beforeEach((to, from, next) => {
 	// 获取authToken
 	// 4b5c98b6800a03b3d18a9dbcd55107743ae7d11fab03c5006fc07d2fa479e430
-	let authToken = "4b5c98b6800a03b3d18a9dbcd55107743ae7d11fab03c5006fc07d2fa479e430";
-	// let authToken = localStorage.getItem("authToken") || "";
-	// if (!authToken) {
-	// 	authToken = obj.getQueryString("XX-Token")
-	// 	if (authToken) {
-	// 		localStorage.setItem("XX-Token", authToken)
-	// 	}
-	// }
+	// let authToken = "c58ae00cf383fb9aad84458b495965039e32fc2cbf7976c6ca39c8ebf2cbf1c5";
+	let authToken = localStorage.getItem("XX-Token") || "";
+	if (!authToken) {
+		authToken = obj.getQueryString("XX-Token")
+		if (authToken) {
+			localStorage.setItem("XX-Token", authToken)
+		}
+	}
 	if (authToken) {
 		localStorage.setItem("XX-Token", authToken)
 	}

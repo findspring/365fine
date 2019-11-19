@@ -19,9 +19,10 @@ const service = r => require.ensure([], () => r(require('pages/service')), 'serv
 const share = r => require.ensure([], () => r(require('pages/share')), 'share');
 const credit = r => require.ensure([], () => r(require('pages/credit')), 'credit');
 const vip = r => require.ensure([], () => r(require('pages/vip')), 'vip');
-const recommond = r => require.ensure([], () => r(require('pages/recommond')), 'recommond');
+const recommend = r => require.ensure([], () => r(require('pages/recommend')), 'recommend');
 const reapply = r => require.ensure([], () => r(require('pages/reapply')), 'reapply');
 const news = r => require.ensure([], () => r(require('pages/news')), 'news');
+const login = r => require.ensure([], () => r(require('pages/login')), 'login');
 
 Vue.use(Router)
 
@@ -204,14 +205,14 @@ export default new Router({
 			},
 			component: vip
 		}, {
-			path: "/recommond",
-			name: 'recommond',
+			path: "/recommend",
+			name: 'recommend',
 			meta: {
 				title: '推荐',
-				flag: 'recommond',
+				flag: 'recommend',
 				keepAlive: false,
 			},
-			component: recommond
+			component: recommend
 		}, {
 			path: "/reapply",
 			name: 'reapply',
@@ -230,6 +231,15 @@ export default new Router({
 				keepAlive: false,
 			},
 			component: news
+		}, {
+			path: "/login",
+			name: 'login',
+			meta: {
+				title: '登录',
+				flag: 'login',
+				keepAlive: false,
+			},
+			component: login
 		}
 
 	]
