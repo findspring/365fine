@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import util from '../utils/index'
 export default {
 
   name: 'login',
@@ -48,6 +49,7 @@ export default {
 		},
 		loginIn(){
 			let mobileRule = /^[1][3456789][0-9]{9}$/;
+			let openid = util.getQueryString('openid') || '';
 			if(this.sms && this.mobile){
 				if(!mobileRule.test(this.mobile)){
 					this.$toast({position:'top',type:'error',message:'请输入正确手机号',duration: 500,});
@@ -55,7 +57,7 @@ export default {
 					if(this.sms.length == 6){
 						this.$http({
 			        method: "get",
-			        url: "/user/public/wechat_login?mobile=" + this.mobile +'&verification_code=' + this.sms,
+			        url: "/user/public/wechat_login?mobile=" + this.mobile +'&verification_code=' + this.sms+'&openid=' + openid,
 			      }).then((res) => {
 			        let result = res.data.data;
 			        if(result.token){
