@@ -87,9 +87,16 @@ export default {
         url: "/wechat/creditcard/cardapply",
       }).then((res) => {
         let result = res.data.data.userinfo;
-        this.realName = result.realname;
-        this.idCard = result.idcard;
-        this.mobile = result.mobile;
+        if(result.realname == '' || result.realname == null){
+					this.$toast({type:'err',message:'暂未实名认证,将自动跳转到认证页面',duration: 1000,});
+	        setTimeout(() => {
+	          this.goPath('mine');
+	        }, 1000)
+        }else{
+					this.realName = result.realname;
+	        this.idCard = result.idcard;
+	        this.mobile = result.mobile;
+        }	        
       }).catch((err) => {});
 		},
   },
