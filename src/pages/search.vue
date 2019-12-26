@@ -17,7 +17,7 @@
 			</div>
 			<div class="search-credit" v-else>
 				<!-- <h3>信用卡产品</h3> -->
-				<div class="loan-item clearfix" v-for="(val,index) in creditcards" :key="index" @click="goPath('credit')" >
+				<div class="loan-item clearfix" v-for="(val,index) in creditcards" :key="index" @click="goCredit(val.id)" >
 					<div class="loan-item-hot" v-if="val.ishot == 1"><van-icon name="fire" />HOT</div>
 	    		<div class="loan-item-top">
 	    			<img :src="'http://www.365qutui.cn/'+val.bank_logo">
@@ -78,9 +78,11 @@ export default {
     };
   },
   methods:{
-  	goPath(val){
-			this.$router.push({name:val})
-		},
+  	goCredit(id){
+  		this.$router.push({path:'credit', query:{
+          id:id
+        }})
+  	},
   	onSearch(){
 			this.$http({
         method: "get",
